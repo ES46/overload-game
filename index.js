@@ -15,6 +15,12 @@ app.get('/', (req, res) => {
   res.render('index')
 })
 
+app.get('/game', (req, res) => {
+  // linkQuery.getPage(req.params.id)
+  // .then(data => {
+  res.render('game');
+});
+
 app.listen(port, () => {
   console.log(`listening on ${port}`);
-})
+});
