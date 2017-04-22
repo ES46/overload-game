@@ -17,6 +17,10 @@
     "knex": "^0.12.9",
     "pg": "^6.1.5"
   },
+<<<<<<< HEAD
+=======
+  "devDependencies": {},
+>>>>>>> dae0555cfd1e87fa52b625ee2066ab78223e4f9a
   "repository": {
     "type": "git",
     "url": "git+https://github.com/ES46/overload-game.git"
