@@ -17,7 +17,11 @@
     "knex": "^0.12.9",
     "pg": "^6.1.5"
   },
+<<<<<<< HEAD
   
+=======
+
+>>>>>>> a3b2e856bb330289173b3d0f8770cbd4d9698de7
   "devDependencies": {},
   "repository": {
     "type": "git",

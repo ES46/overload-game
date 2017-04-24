@@ -1,6 +1,16 @@
+body{
+  background: midnightblue;
+  color: lightcyan;
+}
+
 .sign-in-form{
   padding: 10px;
-  border: solid darkblue 2px;
+}
+
+.btn {
+    display: block;
+    margin: 0 auto;
+    color: black;
 }
 
 .b1 {

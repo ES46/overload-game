@@ -3,7 +3,7 @@ const linkQuery = require('./db/linkQuery')
 const bodyParser = require('body-parser')
 const app = express()
 const pg = require('./db/knex')
-const port = process.env.PORT || 3010
+const port = process.env.PORT || 3015
 
 app.set('view engine', 'hbs')
 
