@@ -1,12 +1,12 @@
 
 exports.up = function(knex, Promise) {
-  return knex.schema.createTable('user_table', (table) => {
+  return knex.schema.createTable('player', (table) => {
     table.increments()
+    table.string('playername')
     table.integer('score')
-    table.string('username')
   })
 };
 
 exports.down = function(knex, Promise) {
-  return knex.schema.dropTableIfExists('user_table')
+  return knex.schema.dropTableIfExists('player')
 };

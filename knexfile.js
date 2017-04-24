@@ -4,7 +4,7 @@ module.exports = {
 
   development: {
     client: 'pg',
-    connection: 'postgres://localhost/agile_overload'
+    connection: 'postgres://localhost/agileoverload'
   },
   production: {
     client: 'pg',

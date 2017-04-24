@@ -6,16 +6,24 @@ exports.seed = function(knex, Promise) {
       // Inserts seed entries
       return knex('game').insert([
         {
-          user_id: 1,
-          terminal_id: 1
+          board_id: 1,
+          playername_id: 1,
+
         },
         {
-          user_id: 1,
-          terminal_id: 1
+          board_id: 2,
+          playername_id: 2,
+
         },
         {
-          user_id: 1,
-          terminal_id: 1
+          board_id: 3,
+          playername_id: 3,
+
+        },
+        {
+          board_id: 4,
+          playername_id: 4,
+
         }
       ]);
     });
