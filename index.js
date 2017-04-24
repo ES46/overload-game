@@ -32,6 +32,19 @@ app.get('/game', (req, res) => {
   res.render('game');
 });
 
+app.get('/username', (req, res) => {
+  // linkQuery.getUser(req.params.id)
+  //   .then(data => {
+    res.render('user')
+  })
+
+app.post('/username/:id', (req, res) => {
+  linkQuery.getUser(req.params.id)
+  .then(data => {
+    res.render('user')
+  })
+})
+
 
 app.listen(port, () => {
   console.log(`listening on ${port}`);
