@@ -11,8 +11,13 @@ app.use(bodyParser.urlencoded({ extended: false}))
 app.use(bodyParser.json())
 app.use(express.static('public'))
 
+console.log();
+
 app.get('/', (req, res) => {
+  // linkQuery.getGif()
+  // .then()=>{
   res.render('splash')
+  // }
 })
 
 app.get('/login', (req, res) => {
@@ -26,6 +31,19 @@ app.get('/game', (req, res) => {
   // .then(data => {
   res.render('game');
 });
+
+app.get('/username', (req, res) => {
+  // linkQuery.getUser(req.params.id)
+  //   .then(data => {
+    res.render('user')
+  })
+
+app.post('/username/:id', (req, res) => {
+  linkQuery.getUser(req.params.id)
+  .then(data => {
+    res.render('user')
+  })
+})
 
 
 app.listen(port, () => {
