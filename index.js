@@ -11,8 +11,13 @@ app.use(bodyParser.urlencoded({ extended: false}))
 app.use(bodyParser.json())
 app.use(express.static('public'))
 
+console.log();
+
 app.get('/', (req, res) => {
+  // linkQuery.getGif()
+  // .then()=>{
   res.render('splash')
+  // }
 })
 
 app.get('/login', (req, res) => {
