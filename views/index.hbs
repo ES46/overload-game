@@ -14,13 +14,16 @@
     <h1 align="center">💥 AGILE Overload Game 💥</h1>
     <div class="container">
         <div class="col-lg-3">bullshit</div>
-        <form class="sign-in-form col-lg-6">
+        {{#each data}}
+        <form class="sign-in-form col-lg-6" action="/username/{{id}}" method="POST">
             <div class="form-group">
                 <label for="email">Enter Username</label>
                 <input type="email" class="form-control" id="email" placeholder="Username" required>
             </div>
+            {{/each}}
             <!-- <button type="submit" class="btn btn-sm" align="center">Log In</button> -->
-            <a href="/game" role="button">Play Game</a>
+            <!-- <a href="/game" role="button">Play Game</a> -->
+            <button type="button" name="button" href="/game/{{id}}"></button>
         </form>
         <div class="col-lg-3">more bullshit</div>
       </div>
