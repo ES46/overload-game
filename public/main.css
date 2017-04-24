@@ -1,6 +1,6 @@
 body{
   background: midnightblue;
-  color: lightcyan;
+  color: dimgrey;
 }
 
 .sign-in-form{
@@ -48,4 +48,20 @@ body{
       border: solid darkblue 2px;
       width: 50%;
       height: 15vh;
+  }
+
+  .b7 {
+    border: solid darkblue 2px;
+    width: 50%;
+    height: 15vh;
+  }
+
+  .b8 {
+    border: solid darkblue 2px;
+    width: 50%;
+    height: 15vh;
+  }
+
+  button:hover {
+    background-color: red;
   }
