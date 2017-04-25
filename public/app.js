@@ -20,7 +20,7 @@ $(function() {
 
     setInterval(mainLoop, 1000)
     getGif()
-    randomCommand()
+    randomCommand(console.log(commands))
 
 });
 
@@ -82,4 +82,5 @@ function mainLoop(){
        random = Math.floor(randomSet)
       console.log(random);
     }
+
  }
