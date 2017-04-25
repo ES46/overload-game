@@ -18,8 +18,8 @@ $(function() {
         console.log(msg)
     })
 
-    setInterval(mainLoop, 1000)
     getGif()
+    setInterval(mainLoop, 1000)
     randomCommand()
 
 });
