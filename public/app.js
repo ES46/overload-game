@@ -9,7 +9,7 @@ var oneMinute = 60 * 1,
 
 $(function() {
     document.querySelector('.container').addEventListener('click', function(event) {
-      if(event.target.classList.contains('col-md-3')){
+      if(event.target.classList.contains('col-xs-6')){
           socket.emit('button', event.target.id)
       }
     })
