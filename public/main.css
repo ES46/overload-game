@@ -3,6 +3,10 @@ body{
   color: dimgrey;
 }
 
+.game_title{
+  font-family: 'Press Start 2P', cursive;
+}
+
 .sign-in-form{
   padding: 10px;
 }
