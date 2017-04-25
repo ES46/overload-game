@@ -1,5 +1,6 @@
 $( document ).ready(function() {
     getGif()
+    move()
 });
 
 function getGif() {
@@ -17,3 +18,40 @@ function getGif() {
       // console.log(gif);
     })
   }
+
+  function startTimer(duration, display) {
+    var timer = duration, minutes, seconds;
+    setInterval(function () {
+        minutes = parseInt(timer / 60, 10);
+        seconds = parseInt(timer % 60, 10);
+
+        minutes = minutes < 10 ? "0" + minutes : minutes;
+        seconds = seconds < 10 ? "0" + seconds : seconds;
+
+        display.text(minutes + ":" + seconds);
+
+        if (--timer < 0) {
+            timer = duration;
+        }
+    }, 1000);
+}
+
+jQuery(function ($) {
+    var oneMinute = 60 * 1,
+        display = $('#time');
+    startTimer(fiveMinutes, display);
+});
+
+function move() {
+  var elem = document.getElementById("myBar");
+  var width = 1;
+  var id = setInterval(frame, 700);
+  function frame() {
+      if (width >= 100) {
+          clearInterval(id);
+      } else {
+          width++;
+          elem.style.width = width + '%';
+      }
+  }
+}
