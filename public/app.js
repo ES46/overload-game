@@ -20,10 +20,6 @@ $(function() {
 
     setInterval(mainLoop, 1000)
     getGif()
-    move()
-    var oneMinute = 60 * 1,
-        display = $('#time');
-    startTimer(oneMinute, display);
     randomCommand()
 
 });
