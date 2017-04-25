@@ -5,7 +5,7 @@ body{
 }
 
 .splash{
-  background: rgba(66, 63, 65, 0.1);
+  background: #E5E5E5;
 }
 
 .btn-circle.btn-xl {
@@ -92,7 +92,7 @@ button:hover {
   width: 500px;
   margin: 50px auto 0 auto;
   padding-bottom: 10px;
-  box-shadow: 0 0 30px rgba(0,0,0,0.4);
+  /*box-shadow: 0 0 30px rgba(0,0,0,0.4);*/
 
   -webkit-border-radius: 3px;
   -moz-border-radius: 3px;
