@@ -13,5 +13,9 @@
     <h3>Username: {{username}}</h3>
     <h4>Highscore: {{score}}</h4>
     {{/each}}
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+        var socket = io();
+    </script>
   </body>
 </html>

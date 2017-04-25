@@ -16,7 +16,8 @@
     "firebase": "^3.8.0",
     "hbs": "^4.0.1",
     "knex": "^0.12.9",
-    "pg": "^6.1.5"
+    "pg": "^6.1.5",
+    "socket.io": "^1.7.3"
   },
   "devDependencies": {},
   "repository": {

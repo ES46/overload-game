@@ -2,6 +2,8 @@ const express = require('express')
 const linkQuery = require('./db/linkQuery')
 const bodyParser = require('body-parser')
 const app = express()
+const http = require('http').Server(app)
+const io = require('socket.io')(http)
 const pg = require('./db/knex')
 const port = process.env.PORT || 3015
 
@@ -10,8 +12,6 @@ app.set('view engine', 'hbs')
 app.use(bodyParser.urlencoded({ extended: false}))
 app.use(bodyParser.json())
 app.use(express.static('public'))
-
-console.log();
 
 app.get('/', (req, res) => {
   // linkQuery.getGif()
@@ -45,7 +45,10 @@ app.post('/username/:id', (req, res) => {
   })
 })
 
+io.on('connection', function(socket){
+  console.log('a user connected')
+})
 
-app.listen(port, () => {
+http.listen(port, () => {
   console.log(`listening on ${port}`);
 });
