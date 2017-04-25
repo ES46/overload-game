@@ -9,7 +9,7 @@ function addUser(obj) {
 }
 
 function getNewId(id) {
-  
+  return pg('player').select().where('id', id)
 }
 
 

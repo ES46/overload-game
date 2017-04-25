@@ -55,9 +55,7 @@ app.post('/user', (req, res) => {
   console.log(req.body);
   linkQuery.addUser(req.body)
   .then(() => {
-    var userId = req.player.id
-
-    res.redirect('/user/' + userId)
+    res.redirect('/game')
   })
 })
 
