@@ -20,6 +20,8 @@ $(function() {
 
     setInterval(mainLoop, 1000)
     getGif()
+    randomCommand()
+
 });
 
 function getGif() {
@@ -65,3 +67,19 @@ function mainLoop(){
     moveTimer()
     moveBar()
 }
+
+ var commands = ['fulfill sprint backlog', 'fix build-breaker', 'reference burndown chart', 'report fail-fast', 'begin sprint', 'complete task', 'consult task board', 'reduce technical debt', 'begin test automation', 'get user story', 'increase velocity', 'git push ORIGIN MASTER', 'git pull ORIGIN MASTER', 'water the garden', 'ready test', 'prioritize backlog', 'breakdown epic', 'create kanban', 'start iteration', 'communicate customer intent', 'call stand-up', 'agree on poker plan', 'consult stakeholder', 'submit pull request', 'start test-driven development', 'update wiki', 'buy ping-pong balls', 'fill keg', 'deploy app','take a nap on the couch']
+
+ function randomCommand () {
+   for (var i = 0; i < commands.length; i++) {
+     console.log(commands[i]);
+   }
+    var randomSet, random
+    // console.log(random);
+
+    for (var i = 0; i < 4; i++) {
+       randomSet = Math.random() * commands.length
+       random = Math.floor(randomSet)
+      console.log(random);
+    }
+ }
