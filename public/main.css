@@ -1,6 +1,19 @@
 body{
   background: midnightblue;
   color: dimgrey;
+  font: 2em 'Andale Mono', Consolas, 'Courier New';
+}
+.splash{
+  background: rgba(66, 63, 65, 0.1);
+}
+
+.btn-circle.btn-xl {
+  width: 200px;
+  height: 200px;
+  padding: 10px 16px;
+  font-size: 24px;
+  line-height: 1.33;
+  border-radius: 50%;
 }
 
 .game_title{
@@ -110,7 +123,7 @@ body{
   list-style: none;
   background: #141414;
   color: #45D40C;
-  font: 2em 'Andale Mono', Consolas, 'Courier New';
+  font: 1em 'Andale Mono', Consolas, 'Courier New';
   line-height: 1.6em;
 
   -webkit-border-bottom-right-radius: 3px;
