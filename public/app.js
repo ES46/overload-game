@@ -67,8 +67,9 @@ function mainLoop(){
   // console.log('Name: ' + profile.getName());
   // console.log('Image URL: ' + profile.getImageUrl());
   console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
-  var gamePlayer = profile.getEmail()
-  console.log(gamePlayer);
+  var googlePlayer = profile.getEmail();
+  console.log(googlePlayer);
 }
 
+$.ajax(goo)
 // .w3.U3
