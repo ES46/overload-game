@@ -31,7 +31,7 @@
       <div id="time">
 
       </div>
-      <!-- <div class="container"> -->
+      <div class="container">
         <div class="row leftbuttons">
           <button class="b1 col-xs-6 col-sm-4 col-md-2 col-lg-2" type="button" name="button" id="1">Create User Story</button>
           <button class="b2 col-xs-6 col-sm-4 col-md-2 col-lg-2" type="button" name="button" id="2">Git Push</button>
@@ -50,23 +50,8 @@
         </div>
       </div>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  <script src="/app.js"></script>
   <script src="/socket.io/socket.io.js"></script>
-  <script>
-    $(function() {
-      var socket = io()
-
-      document.querySelector('.container').addEventListener('click', function(event) {
-        if(event.target.classList.contains('col-md-3')){
-            socket.emit('button', event.target.id)
-        }
-      })
-
-      socket.on('button', function(msg) {
-          console.log(msg)
-      })
-  })
-  </script>
+  <script src="/app.js"></script>
 </body>
 
 </html>
