@@ -4,7 +4,7 @@ $( document ).ready(function() {
 });
 
 function getGif() {
-  var url = 'http://api.giphy.com/v1/gifs/search?q=8bit+bomb&limit=10&api_key=dc6zaTOxFJmzC&offset=0'
+  var url = 'https://api.giphy.com/v1/gifs/search?q=8bit+bomb&limit=10&api_key=dc6zaTOxFJmzC&offset=0'
   $.get(url)
     .then(function(data) {
       console.log(data);
