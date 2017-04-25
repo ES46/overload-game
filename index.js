@@ -45,8 +45,11 @@ app.post('/username/:id', (req, res) => {
   })
 })
 
-app.get('/user', (req, res) => {
-  res.render('user')
+app.get('/user/:id', (req, res) => {
+  linkQuery.getUser(req.params.id)
+  .then(data => {
+    res.render('user')
+  })
 })
 
 app.listen(port, () => {

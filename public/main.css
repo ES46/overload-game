@@ -9,12 +9,15 @@ body{
 }
 
 .btn-circle.btn-xl {
-  width: 200px;
-  height: 200px;
-  padding: 10px 16px;
-  font-size: 24px;
-  line-height: 1.33;
-  border-radius: 50%;
+    width: 200px;
+    height: 200px;
+    padding: 10px 16px;
+    font-size: 24px;
+    line-height: 1.33;
+    position: relative;
+    bottom: 580px;
+    left: 175px;
+    border-radius: 50%;
 }
 
 .game_title{
@@ -145,4 +148,15 @@ button:hover {
   word-wrap: break-word;
   position: relative;
   padding: 0 0 0 15px;
+}
+
+#gif {
+  width: 100%;
+  height: 100%;
+}
+
+img {
+  width: 100%;
+  height: 100%;
+  position: relative;
 }
