@@ -1,29 +1,3 @@
-var socket = io()
-
-var oneMinute = 60 * 1,
-    duration = oneMinute,
-    timer = duration, minutes, seconds,
-    display = $('#time'),
-    elem = document.getElementById("myBar"),
-    width = 0;
-
-$(function() {
-    document.querySelector('.container').addEventListener('click', function(event) {
-      if(event.target.classList.contains('col-xs-6')){
-          socket.emit('button', event.target.id)
-      }
-    })
-
-    socket.on('button', function(msg) {
-        console.log(msg)
-    })
-
-    getGif()
-    setInterval(mainLoop, 1000)
-    randomCommand()
-
-});
-
 function getGif() {
   var url = 'https://api.giphy.com/v1/gifs/search?q=8bit+bomb&limit=10&api_key=dc6zaTOxFJmzC&offset=0'
   $.get(url)

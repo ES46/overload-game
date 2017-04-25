@@ -52,6 +52,32 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="/socket.io/socket.io.js"></script>
   <script src="/app.js"></script>
+  <script>
+      var socket = io()
+
+      var oneMinute = 60 * 1,
+          duration = oneMinute,
+          timer = duration, minutes, seconds,
+          display = $('#time'),
+          elem = document.getElementById("myBar"),
+          width = 0;
+
+      $(function() {
+          document.querySelector('.container').addEventListener('click', function(event) {
+            if(event.target.classList.contains('col-xs-6')){
+                socket.emit('button', event.target.id)
+            }
+          })
+
+          socket.on('button', function(msg) {
+              console.log(msg)
+          })
+          
+          setInterval(mainLoop, 1000)
+          randomCommand()
+
+      });
+  </script>
 </body>
 
 </html>
