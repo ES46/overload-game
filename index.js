@@ -45,6 +45,9 @@ app.post('/username/:id', (req, res) => {
   })
 })
 
+app.get('/user', (req, res) => {
+  res.render('user')
+})
 
 app.listen(port, () => {
   console.log(`listening on ${port}`);

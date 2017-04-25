@@ -3,6 +3,7 @@ body{
   color: dimgrey;
   font: 2em 'Andale Mono', Consolas, 'Courier New';
 }
+
 .splash{
   background: rgba(66, 63, 65, 0.1);
 }
@@ -25,67 +26,66 @@ body{
 }
 
 .btn {
-    display: block;
-    margin: 0 auto;
-    color: black;
+  display: block;
+  margin: 0 auto;
+  color: black;
 }
 
 .b1 {
   border: solid darkblue 2px;
-    width: 50%;
-    height: 15vh;
-
+  width: 50%;
+  height: 15vh;
 }
 
 .b2 {
   border: solid darkblue 2px;
-      width: 50%;
-      height: 15vh;
+  width: 50%;
+  height: 15vh;
   }
 
 .b3 {
   border: solid darkblue 2px;
-      width: 50%;
-      height: 15vh;
+  width: 50%;
+  height: 15vh;
   }
 
-  .b4 {
-      border: solid darkblue 2px;
-      width: 50%;
-      height: 15vh;
-  }
+.b4 {
+  border: solid darkblue 2px;
+  width: 50%;
+  height: 15vh;
+}
 
-  .b5 {
-      border: solid darkblue 2px;
-      width: 50%;
-      height: 15vh;
-  }
+.b5 {
+  border: solid darkblue 2px;
+  width: 50%;
+  height: 15vh;
+}
 
-  .b6 {
-      border: solid darkblue 2px;
-      width: 50%;
-      height: 15vh;
-  }
+.b6 {
+  border: solid darkblue 2px;
+  width: 50%;
+  height: 15vh;
+}
 
-  .b7 {
-    border: solid darkblue 2px;
-    width: 50%;
-    height: 15vh;
-  }
+.b7 {
+  border: solid darkblue 2px;
+  width: 50%;
+  height: 15vh;
+}
 
-  .b8 {
-    border: solid darkblue 2px;
-    width: 50%;
-    height: 15vh;
-  }
+.b8 {
+  border: solid darkblue 2px;
+  width: 50%;
+  height: 15vh;
+}
 
-  button:hover {
-    background-color: red;
-  }
+button:hover {
+  background-color: red;
+}
 
   /*game terminal*/
 
-  .shell-wrap {
+.shell-wrap {
   width: 500px;
   margin: 50px auto 0 auto;
   padding-bottom: 10px;

@@ -6,12 +6,32 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://fonts.googleapis.com/css?family=Press+Start+2P" rel="stylesheet">
   <link rel="stylesheet" href="./main.css">
 </head>
-  <body>
+
+<body>
+  <div>
     {{#each data}}
-    <h3>Username: {{username}}</h3>
-    <h4>Highscore: {{score}}</h4>
+      <h3>Username: {{username}}</h3>
+      <h4>Highscore: {{score}}</h4>
     {{/each}}
-  </body>
+  </div>
+
+  <script src="https://www.gstatic.com/firebasejs/3.8.0/firebase.js"></script>
+  <script>
+    // Initialize Firebase
+    var config = {
+        apiKey: "AIzaSyAJ34s_543uSIr5404eRHb6RmsPqDP6WU4",
+        authDomain: "agile-overload.firebaseapp.com",
+        databaseURL: "https://agile-overload.firebaseio.com",
+        projectId: "agile-overload",
+        storageBucket: "agile-overload.appspot.com",
+        messagingSenderId: "502296970701"
+    };
+    firebase.initializeApp(config);
+  </script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="/app.js"></script>
+</body>
 </html>
