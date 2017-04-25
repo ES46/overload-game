@@ -16,12 +16,14 @@
     <div class="container">
         <div class="col-lg-3">
         </div>
+
+
         <form class="sign-in-form col-lg-6" action="/user/{{id}}" method="POST">
             <div class="form-group">
                 <label for="email">Enter Username</label>
-                <input type="text" class="form-control" id="email" placeholder="Username" required>
+                <input type="text" name="playername" class="form-control" id="email" placeholder="Username" required>
             </div>
-            <button type="submit" name="button" class="btn btn-sm" href="/game/{{id}}" align="center">Play Game</button>
+            <button type="submit"  class="btn btn-sm" align="center">Play Game</button>
         </form>
         <div class="col-lg-3"></div>
       </div>

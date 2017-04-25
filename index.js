@@ -39,17 +39,32 @@ app.get('/game', (req, res) => {
 //   })
 // })
 
-app.post('/user/:id', (req, res) => {
-  linkQuery.getUser(req.params.id)
-  .then(data => {
-    res.render('user')
+// app.post('/user', (req, res) => {
+//   console.log(req.params.id);
+//   req.body.id = req.params.id
+//   var userId = req.params.id
+//   console.log(userId)
+//   linkQuery.addUser(req.body)
+//   .then(()=> {
+//     res.redirect('/user/' + userId)
+//     console.log(req.params.id)
+//   })
+// })
+
+app.post('/user', (req, res) => {
+  console.log(req.body);
+  linkQuery.addUser(req.body)
+  .then(() => {
+    var userId = req.player.id
+
+    res.redirect('/user/' + userId)
   })
 })
 
 app.get('/user/:id', (req, res) => {
   linkQuery.getUser(req.params.id)
   .then(data => {
-    res.render('user')
+    res.render('user', {data})
   })
 })
 

@@ -2,19 +2,21 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>{{username}}</title>
+  {{#each data}}
+  <title>{{playername}}</title>
+  {{/each}}
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link href="https://fonts.googleapis.com/css?family=Press+Start+2P" rel="stylesheet">
-  <link rel="stylesheet" href="./main.css">
+  <link rel="stylesheet" href="/main.css">
 </head>
 
 <body>
   <div>
     {{#each data}}
-      <h3>Username: {{username}}</h3>
-      <h4>Highscore: {{score}}</h4>
+      <h3>Username: {{this.playername}}</h3>
+      <h4>Highscore: {{this.score}}</h4>
     {{/each}}
   </div>
 
