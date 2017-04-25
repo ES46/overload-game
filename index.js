@@ -1,5 +1,5 @@
 const express = require('express')
-const linkQuery = require('./db/linkQuery')
+const linkQuery = require('./db/linkquery')
 const bodyParser = require('body-parser')
 const app = express()
 const pg = require('./db/knex')
