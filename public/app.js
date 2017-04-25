@@ -1,6 +1,9 @@
 $( document ).ready(function() {
     getGif()
     move()
+    var oneMinute = 60 * 1,
+        display = $('#time');
+    startTimer(oneMinute, display);
 });
 
 function getGif() {
@@ -36,16 +39,14 @@ function getGif() {
     }, 1000);
 }
 
-jQuery(function ($) {
-    var oneMinute = 60 * 1,
-        display = $('#time');
-    startTimer(fiveMinutes, display);
-});
+// jQuery(function ($) {
+//
+// });
 
 function move() {
   var elem = document.getElementById("myBar");
   var width = 1;
-  var id = setInterval(frame, 700);
+  var id = setInterval(frame, 1000);
   function frame() {
       if (width >= 100) {
           clearInterval(id);
