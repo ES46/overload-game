@@ -26,40 +26,39 @@
       </div>
       <div class="container">
         <div class="row leftbuttons">
-          <button class="b1 col-md-3" type="button" name="button">Create User Story</button>
-          <button class="b2 col-md-3" type="button" name="button">Git Push</button>
-          <button class="b3 col-md-3" type="button" name="button">Create Epic</button>
-          <button class="b4 col-md-3" type="button" name="button">Debug</button>
+          <button class="b1 col-md-3" type="button" name="button" id="1">Create User Story</button>
+          <button class="b2 col-md-3" type="button" name="button" id="2">Git Push</button>
+          <button class="b3 col-md-3" type="button" name="button" id="3">Create Epic</button>
+          <button class="b4 col-md-3" type="button" name="button" id="4">Debug</button>
         </div>
       </div>
       <div class="container">
         <div class="row rightbuttons">
-          <button class="b5 col-md-3" type="button" name="button">Send to SCRUM Master</button>
-          <button class="b6 col-md-3" type="button" name="button">Get user opinions</button>
-          <button class="b7 col-md-3" type="" name="button">Meet with team</button>
-          <button class="b8 col-md-3" type="button" name="button">DEPLOY</button>
+          <button class="b5 col-md-3" type="button" name="button" id="5">Send to SCRUM Master</button>
+          <button class="b6 col-md-3" type="button" name="button" id="6">Get user opinions</button>
+          <button class="b7 col-md-3" type="button" name="button" id="7">Meet with team</button>
+          <button class="b8 col-md-3" type="button" name="button" id="8">DEPLOY</button>
         </div>
       </div>
     </div>
   </div>
-  <script src="https://www.gstatic.com/firebasejs/3.8.0/firebase.js"></script>
-  <script>
-    // Initialize Firebase
-    var config = {
-      apiKey: "AIzaSyAJ34s_543uSIr5404eRHb6RmsPqDP6WU4",
-      authDomain: "agile-overload.firebaseapp.com",
-      databaseURL: "https://agile-overload.firebaseio.com",
-      projectId: "agile-overload",
-      storageBucket: "agile-overload.appspot.com",
-      messagingSenderId: "502296970701"
-    };
-    firebase.initializeApp(config);
-  </script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="/app.js"></script>
   <script src="/socket.io/socket.io.js"></script>
   <script>
-      var socket = io();
+    $(function() {
+      var socket = io()
+
+      document.querySelector('.container').addEventListener('click', function(event) {
+        if(event.target.classList.contains('col-md-3')){
+            socket.emit('button', event.target.id)
+        }
+      })
+
+      socket.on('button', function(msg) {
+          console.log(msg)
+      })
+  })
   </script>
 </body>
 

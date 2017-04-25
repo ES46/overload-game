@@ -47,6 +47,13 @@ app.post('/username/:id', (req, res) => {
 
 io.on('connection', function(socket){
   console.log('a user connected')
+  socket.on('button', (msg) => {
+    io.emit('button', msg)
+  })
+  // socket.join('game', function(){
+  //   console.log(socket.rooms); // [ <socket.id>, 'room 237' ]
+  //   io.to('game', 'a new user has joined the room') // broadcast to everyone in the room
+  // })
 })
 
 http.listen(port, () => {
