@@ -2,6 +2,8 @@ const express = require('express')
 const linkQuery = require('./db/linkquery')
 const bodyParser = require('body-parser')
 const app = express()
+const http = require('http').Server(app)
+const io = require('socket.io')(http)
 const pg = require('./db/knex')
 const port = process.env.PORT || 3015
 
@@ -10,8 +12,6 @@ app.set('view engine', 'hbs')
 app.use(bodyParser.urlencoded({ extended: false}))
 app.use(bodyParser.json())
 app.use(express.static('public'))
-
-console.log();
 
 app.get('/', (req, res) => {
   // linkQuery.getGif()
@@ -68,6 +68,17 @@ app.get('/user/:id', (req, res) => {
   })
 })
 
-app.listen(port, () => {
-  console.log(`listening on ${port}`)
+io.on('connection', function(socket){
+  console.log('a user connected')
+  socket.on('button', (msg) => {
+    io.emit('button', msg)
+  })
+  // socket.join('game', function(){
+  //   console.log(socket.rooms); // [ <socket.id>, 'room 237' ]
+  //   io.to('game', 'a new user has joined the room') // broadcast to everyone in the room
+  // })
 })
+
+http.listen(port, () => {
+  console.log(`listening on ${port}`);
+});
