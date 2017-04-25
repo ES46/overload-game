@@ -64,7 +64,12 @@ function move() {
    for (var i = 0; i < commands.length; i++) {
      console.log(commands[i]);
    }
-    var randomSet = Math.random() * commands.length
-    var random = Math.floor(randomSet)
-    console.log(random);
+    var randomSet, random
+    // console.log(random);
+
+    for (var i = 0; i < 4; i++) {
+       randomSet = Math.random() * commands.length
+       random = Math.floor(randomSet)
+      console.log(random);
+    }
  }
