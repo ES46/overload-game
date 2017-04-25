@@ -66,8 +66,13 @@ app.get('/user/:id', (req, res) => {
   })
 })
 
+var id = 0
+
 io.on('connection', function(socket){
-  console.log('a user connected')
+  // console.log('a user connected')
+  socket.to(socket.id).emit('id', id)
+  id++
+
   socket.on('button', (msg) => {
     io.emit('button', msg)
   })
