@@ -1,9 +1,20 @@
 const pg = require('./knex')
 
 function getUser(id) {
-  return pg('user').select().where('id', id)
+  return pg('player').select().where('id', id)
 }
 
+function addUser(obj) {
+  return pg('player').insert(obj)
+}
+
+function getNewId(id) {
+  
+}
+
+
+
 module.exports = {
-  getUser
+  getUser,
+  addUser
 };

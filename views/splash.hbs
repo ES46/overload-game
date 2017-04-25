@@ -21,27 +21,18 @@
           <!-- <img src="http://giphy.com/embed/5wWf7GW1AzV6pF3MaVW" alt=""> -->
         </div>
         <div class="col-lg-8">
-          <a href="/login" class="btn btn-warning btn-circle btn-xl" role="button" align="right"><i class="glyphicon glyphicon-remove"></i>STARTUP</a>
+          <a href="/login" class="">Login Here</a>
         </div>
       </div>
     </div>
   </main>
 
-  <script src="https://www.gstatic.com/firebasejs/3.8.0/firebase.js"></script>
-  <script>
-    // Initialize Firebase
-    var config = {
-      apiKey: "AIzaSyAJ34s_543uSIr5404eRHb6RmsPqDP6WU4",
-      authDomain: "agile-overload.firebaseapp.com",
-      databaseURL: "https://agile-overload.firebaseio.com",
-      projectId: "agile-overload",
-      storageBucket: "agile-overload.appspot.com",
-      messagingSenderId: "502296970701"
-    };
-    firebase.initializeApp(config);
-  </script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="/app.js"></script>
+  <script src="/socket.io/socket.io.js"></script>
+  <script>
+      var socket = io();
+  </script>
 </body>
 
 </html>
