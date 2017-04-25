@@ -1,54 +1,64 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <title>Overload</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="https://fonts.googleapis.com/css?family=Press+Start+2P" rel="stylesheet">
-    <link rel="stylesheet" href="./main.css">
-  </head>
-  <body>
-    <h1>💥 Agile Overload Game 💥</h1>
-    <div class="board">
+
+<head>
+  <meta charset="utf-8">
+  <title>Overload</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://fonts.googleapis.com/css?family=Press+Start+2P" rel="stylesheet">
+  <link rel="stylesheet" href="./main.css">
+</head>
+
+<body>
+  <h1 class="game_title" align="center">💥 AGILE OVERLOAD💥</h1>
+  <div class="board">
+    <div class="container">
+      <!-- <div class="jumbotron"> -->
+      <div class="shell-wrap">
+        <p class="shell-top-bar">/agile-overload/</p>
+        <ul class="shell-body">
+          <li>cd&nbsp;/Users/</li>
+          <li>cd ../../../../</li>
+          <li>pwd</li>
+          <li>/Users/</li>
+        </ul>
+      </div>
+    <!-- </div> -->
       <div class="container">
-        <div class="jumbotron">
-          <h1>Command Console</h1>
-          <p>See commands here</p>
+        <div class="row leftbuttons">
+          <button class="b1 col-md-3" type="button" name="button">Create User Story</button>
+          <button class="b2 col-md-3" type="button" name="button">Git Push</button>
+          <button class="b3 col-md-3" type="button" name="button">Create Epic</button>
+          <button class="b4 col-md-3" type="button" name="button">Debug</button>
         </div>
-        <div class="container">
-          <div class="row leftbuttons">
-            <button class="b1 col-md-3" type="button" name="button">Create User Story</button>
-            <button class="b2 col-md-3" type="button" name="button">Git Push</button>
-            <button class="b3 col-md-3" type="button" name="button">Create Epic</button>
-            <button class="b4 col-md-3" type="button" name="button">Debug</button>
-          </div>
+      </div>
+      <div class="container">
+        <div class="row rightbuttons">
+          <button class="b5 col-md-3" type="button" name="button">Send to SCRUM Master</button>
+          <button class="b6 col-md-3" type="button" name="button">Get user opinions</button>
+          <button class="b7 col-md-3" type="" name="button">Meet with team</button>
+          <button class="b8 col-md-3" type="button" name="button">DEPLOY</button>
         </div>
-        <div class="container">
-          <div class="row rightbuttons">
-            <button class="b5 col-md-3" type="button" name="button">Send to SCRUM Master</button>
-            <button class="b6 col-md-3" type="button" name="button">Get user opinions</button>
-            <button class="b7 col-md-3" type="" name="button">Meet with team</button>
-            <button class="b8 col-md-3" type="button" name="button">DEPLOY</button>
-          </div>
       </div>
     </div>
-    </div>
-    <script src="https://www.gstatic.com/firebasejs/3.8.0/firebase.js"></script>
-    <script>
-        // Initialize Firebase
-        var config = {
-            apiKey: "AIzaSyAJ34s_543uSIr5404eRHb6RmsPqDP6WU4",
-            authDomain: "agile-overload.firebaseapp.com",
-            databaseURL: "https://agile-overload.firebaseio.com",
-            projectId: "agile-overload",
-            storageBucket: "agile-overload.appspot.com",
-            messagingSenderId: "502296970701"
-        };
-        firebase.initializeApp(config);
-    </script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="/app.js"></script>
-  </body>
+  </div>
+  <script src="https://www.gstatic.com/firebasejs/3.8.0/firebase.js"></script>
+  <script>
+    // Initialize Firebase
+    var config = {
+      apiKey: "AIzaSyAJ34s_543uSIr5404eRHb6RmsPqDP6WU4",
+      authDomain: "agile-overload.firebaseapp.com",
+      databaseURL: "https://agile-overload.firebaseio.com",
+      projectId: "agile-overload",
+      storageBucket: "agile-overload.appspot.com",
+      messagingSenderId: "502296970701"
+    };
+    firebase.initializeApp(config);
+  </script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="/app.js"></script>
+</body>
+
 </html>
