@@ -240,8 +240,6 @@ io.on('connection', function(socket) {
         // Reset the id counter
         id = 0
     }
-
-
 })
 
 // When receiving a button message, push that button id to all players
