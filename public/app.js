@@ -71,5 +71,5 @@ function mainLoop(){
   console.log(googlePlayer);
 }
 
-$.ajax(goo)
+
 // .w3.U3
