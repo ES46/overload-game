@@ -1,7 +1,8 @@
 body{
-  background: midnightblue;
+  background-color: wheat;
   color: dimgrey;
   font: 2em 'Andale Mono', Consolas, 'Courier New';
+  height: 100%
 }
 
 .splash{
@@ -187,4 +188,26 @@ img {
 a {
   position: relative;
   left: 20%;
+}
+
+.about {
+  margin-top: 10px;
+}
+
+.bomb {
+    width: 10%;
+    height: 80%;
+    position: relative;
+    margin-top: 250px;
+    margin-right: 325px;
+    padding-bottom: 250px;
+}
+
+.splash-text {
+    position: relative;
+    left: 25%;
+}
+
+.form-group {
+  margin-top: 200px;
 }
