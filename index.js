@@ -149,8 +149,6 @@ function generateCommands(){
         randomSet = (Math.random() * 12) + (i * 12)
         random = Math.floor(randomSet)
 
-        console.log(random)
-
         // Add the command to the commands array
         commands.push(random)
     }
@@ -192,7 +190,6 @@ function moveTimer() {
 
 function checkTimer(){
     if(timer === 0){
-        console.log('over')
         io.emit('score', score)
         clearInterval(loop)
     }
@@ -206,7 +203,6 @@ function mainLoop() {
 // Perform this callback when a player connects to the '/game' route
 io.on('connection', function(socket) {
     // Send player their playerId
-    console.log('id')
     io.to(socket.id).emit('id', ++id)
 
     // Start the game if the this is the 3rd player to join
