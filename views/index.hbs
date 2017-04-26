@@ -3,6 +3,7 @@
 
 <head>
     <meta charset="utf-8">
+    <meta name="google-signin-client_id" content="229545640899-jvj838koibku2414l5mjlo00ci0hb35s.apps.googleusercontent.com">
     <title>Overload Game</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
@@ -24,13 +25,22 @@
                 <input type="text" name="playername" class="form-control" id="email" placeholder="Username" required>
             </div>
             <button type="submit"  class="btn btn-sm" align="center">Play Game</button>
+            <div class="g-signin2" data-onsuccess="onSignIn"></div>
+
         </form>
         <div class="col-lg-3"></div>
       </div>
 
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
     <script src="/socket.io/socket.io.js"></script>
     <script src="/app.js"></script>
+    <script>
+    $('document').ready(){
+      onSignIn(googleUser)
+    }
+    </script>
 </body>
 
 </html>
