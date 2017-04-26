@@ -8,6 +8,17 @@ function addUser(obj) {
   return pg('player').insert(obj)
 }
 
+function findUserIfExists(obj){
+  return pg('player').select().where(obj).first()
+}
+
+function userTable(obj) {
+  return pg('player').insert({
+    playername: obj.email,
+    password: obj.password
+  })
+}
+
 // function getNewId(id) {
 //   return pg('player').select().where('id', id)
 // }
@@ -18,5 +29,7 @@ function addUser(obj) {
 //
 module.exports = {
   getUser,
-  addUser
+  addUser,
+  userTable,
+  findUserIfExists
 };

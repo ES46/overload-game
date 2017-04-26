@@ -19,7 +19,7 @@
         </div>
 
 
-        <form class="sign-up-form col-lg-6" action="/user" method="POST">
+        <form class="sign-up-form col-lg-6" action="/signup" method="POST">
             <div class="form-group">
                 <label for="signUp">Sign Up</label>
                 <input type="text" name="playername" class="form-control" id="email" placeholder="email">
@@ -27,7 +27,7 @@
                 <button type="submit"  class="btn btn-sm" align="center">Create an Account</button>
             </div>
         </form>
-        <form class="sign-in-form col-lg-6" action="/user" method="post">
+        <form class="sign-in-form col-lg-6" action="/login" method="post">
           <div class="form-group">
             <label for="signIn">Sign In</label>
             <input type="text" name="playername" class="form-control" id="email" placeholder="email">
@@ -35,7 +35,7 @@
           </div>
           <button type="submit"  class="btn btn-sm" align="center">Play Game</button>
         </form>
-        
+
             <div data-id="{{playername}}" class="g-signin2" data-onsuccess="onSignIn"></div>
             <div class="about">
               <p>You and your team are developing a product, work together with your SCRUM master to be as agile as possible to keep the funding going, if your funding runs out, you lose!</p>

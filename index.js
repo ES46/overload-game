@@ -8,6 +8,8 @@ const pg = require('./db/knex')
 const port = process.env.PORT || 3015
 const cookieSession = require('cookie-session')
 const bcrypt = require('bcrypt')
+// const saltRounds = 8
+const key = process.env.COOKIE_KEY || 'gfddsahkjgrhjker'
 
 app.set('view engine', 'hbs')
 
@@ -16,6 +18,12 @@ app.use(bodyParser.urlencoded({
 }))
 app.use(bodyParser.json())
 app.use(express.static('public'))
+
+app.use(cookieSession({
+  name: 'session',
+  keys: [key],
+  maxAge: 24*60*60*1000
+}))
 
 app.get('/', (req, res) => {
     // linkQuery.getGif()
@@ -70,6 +78,49 @@ app.get('/user/:id', (req, res) => {
                 data
             })
         })
+})
+
+app.post('/signup', function(req, res, next) {
+  linkQuery.findUserIfExists({playername: req.body.playername})
+  .then(function(user){
+    if(user){
+      res.send(user)
+    } else {
+      // var hashedPassword = bcrypt.genSalt(8, (err, salt){
+        bcrypt.hash(req.body.password, 10).then(function(hash){
+          req.body.password = hash;
+          console.log(req.body);
+          linkQuery.userTable(req.body)
+          .then(function(){
+            res.send('new user');
+          })
+        });
+      }
+  })
+  .catch(function(obj){
+    console.log('error on posting new user to db', obj);
+  })
+})
+
+app.post('/login', function(req, res, next) {
+  linkQuery.findUserIfExists().where({
+    playername: req.body.email
+  }).first()
+  .then(function(user){
+    if(user){
+      bcrypt.compare(req.body.password, user.password)
+      .then(function(data){
+        if(data){
+          req.session.id = req.body.id
+          res.send('Logged in!')
+        } else {
+          res.send('Incorrect password. Try again.')
+        }
+      })
+        } else {
+          res.send('Invalid login')
+    }
+  })
 })
 
 // Start with 1 for the first playerId
