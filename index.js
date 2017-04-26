@@ -137,6 +137,15 @@ var score = 0
 // Initialize empty current commands array
 var commands = []
 
+// Initialize array of player socked ids
+var players = []
+
+function sendCommands(){
+    for (var i = 0; i < 3; i++) {
+        io.to(players[i]).emit('command', commands[i])
+    }
+}
+
 function generateCommands(){
     var randomSet, random
 
@@ -200,6 +209,7 @@ function mainLoop() {
 io.on('connection', function(socket) {
     // Send player their playerId
     io.to(socket.id).emit('id', ++id)
+    players.push(socket.id)
 
     // Start the game if the this is the 3rd player to join
     if (id === 3) {
@@ -210,7 +220,7 @@ io.on('connection', function(socket) {
         generateCommands()
 
         // Send an individual command to each player
-        io.to(socket.id).emit('command', commands[id - 1])
+        sendCommands()
 
         // Start the main timer loop
         loop = setInterval(mainLoop, 1000)
@@ -219,23 +229,25 @@ io.on('connection', function(socket) {
         id = 0
     }
 
-    // When receiving a button message, push that button id to all players
-    socket.on('button', (msg) => {
-        // If the last command is fulfilled
-        if(!checkCommands(msg)){
-            // Add to the score total
-            score += 3
 
-            // Send the updated score the the players
-            io.emit('score', score)
+})
 
-            // Generate new commands
-            generateCommands()
+// When receiving a button message, push that button id to all players
+io.on('button', (msg) => {
+    // If the last command is fulfilled
+    if(!checkCommands(msg)){
+        // Add to the score total
+        score += 3
 
-            // Send the new command to the player
-            io.to(socket.id).emit('command', commands[id - 1])
-        }
-    })
+        // Send the updated score the the players
+        io.emit('score', score)
+
+        // Generate new commands
+        generateCommands()
+
+        // Send the new command to the player
+        sendCommands()
+    }
 })
 
 http.listen(port, () => {
