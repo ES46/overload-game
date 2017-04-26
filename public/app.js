@@ -1,9 +1,9 @@
 function getGif() {
-  var url = 'https://api.giphy.com/v1/gifs/search?q=8bit+bomb&limit=10&api_key=dc6zaTOxFJmzC&offset=0'
+  var url = 'https://api.giphy.com/v1/gifs/search?q=8bit+bomb&limit=50&api_key=dc6zaTOxFJmzC&offset=0'
   $.get(url)
   .then(function(data) {
       // console.log(data);
-      var gif = data.data[2].id
+      var gif = data.data[4].id
       // var randomize = Math.floor(Math.random()*data.data.length)
       // var gif = data.data[randomize].slug
       var gifUrl = "https://media.giphy.com/media/"+gif+"/giphy.gif"
@@ -69,3 +69,11 @@ function onSignIn(googleUser) {
   var googlePlayer = profile.getEmail();
   console.log(googlePlayer);
 }
+
+$('.g-signin2').click(() => {
+  var current = event.target
+  $.post({
+    url : '/user',
+    method : 'POST'
+  })
+})
