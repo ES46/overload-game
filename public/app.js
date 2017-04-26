@@ -90,7 +90,7 @@ function addButtons(id){
             var tempText = document.createTextNode(commands[i])
             tempButton.className = 'b12 col-xs-6 col-sm-4 col-md-2 col-lg-2'
             tempButton.type = 'button'
-            tempButton.id = i + 1
+            tempButton.id = i
             tempButton.appendChild(tempText)
             $('.leftbuttons').append(tempButton)
         }
@@ -99,25 +99,57 @@ function addButtons(id){
             var tempText = document.createTextNode(commands[i])
             tempButton.className = 'b12 col-xs-6 col-sm-4 col-md-2 col-lg-2'
             tempButton.type = 'button'
-            tempButton.id = i + 1
+            tempButton.id = i
+            tempButton.appendChild(tempText)
+            $('.leftbuttons').append(tempButton)
+        }
+    }else if(id === 2){
+        for (var i = 12; i < 18; i++) {
+            var tempButton = document.createElement('button')
+            var tempText = document.createTextNode(commands[i])
+            tempButton.className = 'b12 col-xs-6 col-sm-4 col-md-2 col-lg-2'
+            tempButton.type = 'button'
+            tempButton.id = i
+            tempButton.appendChild(tempText)
+            $('.leftbuttons').append(tempButton)
+        }
+        for (var i = 18; i < 24; i++) {
+            var tempButton = document.createElement('button')
+            var tempText = document.createTextNode(commands[i])
+            tempButton.className = 'b12 col-xs-6 col-sm-4 col-md-2 col-lg-2'
+            tempButton.type = 'button'
+            tempButton.id = i
+            tempButton.appendChild(tempText)
+            $('.leftbuttons').append(tempButton)
+        }
+    }else if(id === 3){
+        for (var i = 24; i < 30; i++) {
+            var tempButton = document.createElement('button')
+            var tempText = document.createTextNode(commands[i])
+            tempButton.className = 'b12 col-xs-6 col-sm-4 col-md-2 col-lg-2'
+            tempButton.type = 'button'
+            tempButton.id = i
+            tempButton.appendChild(tempText)
+            $('.leftbuttons').append(tempButton)
+        }
+        for (var i = 30; i < 36; i++) {
+            var tempButton = document.createElement('button')
+            var tempText = document.createTextNode(commands[i])
+            tempButton.className = 'b12 col-xs-6 col-sm-4 col-md-2 col-lg-2'
+            tempButton.type = 'button'
+            tempButton.id = i
             tempButton.appendChild(tempText)
             $('.leftbuttons').append(tempButton)
         }
     }
 }
 
-function randomCommand() {
-    for (var i = 0; i < commands.length; i++) {
-        console.log(commands[i])
-    }
-    var randomSet, random
-    // console.log(random);
-
-    for (var i = 0; i < 4; i++) {
-        randomSet = Math.random() * commands.length
-        random = Math.floor(randomSet)
-        console.log(random)
-    }
+function addCommand(id){
+    var tempButton = document.createElement('li')
+    var tempText = document.createTextNode(commands[id])
+    tempButton.id = id
+    tempButton.appendChild(tempText)
+    $('.shell-body').append(tempButton)
 }
 
 function onSignIn(googleUser) {

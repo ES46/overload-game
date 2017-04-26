@@ -18,10 +18,10 @@
       <div class="shell-wrap col-lg-4">
         <p class="shell-top-bar">/agile-overload/</p>
         <ul class="shell-body">
-          <li>cd&nbsp;/Users/</li>
+          <!-- <li>cd&nbsp;/Users/</li>
           <li>cd ../../../../</li>
           <li>pwd</li>
-          <li>/Users/</li>
+          <li>/Users/</li> -->
         </ul>
       </div>
     </div>
@@ -79,6 +79,11 @@
               console.log(msg)
               playerId = msg
               addButtons(playerId)
+          })
+
+          socket.on('command', function(msg) {
+              console.log(msg)
+              addCommand(msg)
           })
 
           // Start the mainLoop once the start message is received from server
