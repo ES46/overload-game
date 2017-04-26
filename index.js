@@ -78,6 +78,7 @@ io.on('connection', function(socket){
   // Start the game if the this is the 4th player to join
   if(id === 4){
       io.emit('start', true)
+      id = 0
   }
 
   // Increment the id for the next player to join
