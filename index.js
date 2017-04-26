@@ -32,9 +32,15 @@ app.get('/', (req, res) => {
 })
 
 app.get('/login', (req, res) => {
-    // linkQuery.getPage(req.params.id)
-    // .then(data => {
+  console.log(req.query.incorrect);
+    if(req.query.incorrect){
+      console.log('incorrect');
+      res.render('index', {login: 'Incorrect password. Please try again.'})
+    } else if (req.query.invalid){
+      res.render('index', {login: `We couldn't find your account. Please sign up!`})
+    }else {
     res.render('index')
+  }
 })
 
 app.get('/game', (req, res) => {
@@ -112,11 +118,12 @@ app.post('/login', function(req, res, next) {
           req.session.id = req.body.id
           res.redirect('/game')
         } else {
-          res.send('Incorrect password. Try again.')
+          // res.send('Incorrect password. Try again.')
+          res.redirect('/login?incorrect=true')
         }
       })
         } else {
-          res.send('Invalid login.  Please create an account.')
+          res.redirect('/login?invalid=true')
     }
   })
 })
