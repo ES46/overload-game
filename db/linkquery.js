@@ -12,6 +12,10 @@ function getNewId(id) {
   return pg('player').select().where('id', id)
 }
 
+function getGoogleId(obj) {
+  return pg('player').insert(obj)
+}
+
 
 
 module.exports = {
