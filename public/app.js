@@ -170,6 +170,7 @@ $('.g-signin2').click((googleUser) => {
     url : '/user',
     method : 'POST'
   })
+})
 
 function bombClick() {
   $('.bomb').click((event) => {
