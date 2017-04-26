@@ -131,10 +131,28 @@ function onSignIn(googleUser) {
     console.log(googlePlayer)
 }
 
-$('.g-signin2').click(() => {
+$('.g-signin2').click((googleUser) => {
+  var current = event.target
+  console.log(googlePlayer);
+  $.post({
+    url : '/user',
+    method : 'POST'
+  })
+
+function bombClick() {
+  $('.bomb').click((event) => {
     var current = event.target
-    $.post({
-        url: '/user',
-        method: 'POST'
-    })
-})
+    $('.bomb').remove()
+      getGif()
+      setTimeout(function(){
+      $.ajax({
+       url: '/login',
+       success: function(data) {
+          //this is the redirect
+          document.location.href='/login';
+        }
+      }
+    )
+  }, 1100)
+  })
+}
