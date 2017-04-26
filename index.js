@@ -123,7 +123,7 @@ app.post('/login', function(req, res, next) {
 })
 
 // Start with 1 for the first playerId
-var id = 1
+var id = 0
 
 // Start with 0 for the score
 var score = 0
@@ -196,7 +196,7 @@ function mainLoop() {
 // Perform this callback when a player connects to the '/game' route
 io.on('connection', function(socket) {
     // Send player their playerId
-    io.to(socket.id).emit('id', id)
+    io.to(socket.id).emit('id', ++id)
 
     // Start the game if the this is the 3rd player to join
     if (id === 3) {
