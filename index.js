@@ -5,7 +5,7 @@ const app = express()
 const http = require('http').Server(app)
 const io = require('socket.io')(http)
 const pg = require('./db/knex')
-const port = process.env.PORT || 3015
+const port = process.env.PORT || 3021
 const cookieSession = require('cookie-session')
 const bcrypt = require('bcrypt')
 const key = process.env.COOKIE_KEY || 'gfddsahkjgrhjker'
@@ -100,15 +100,17 @@ app.post('/signup', function(req, res, next) {
   linkQuery.findUserIfExists({playername: req.body.playername})
   .then(function(user){
     if(user){
-      res.redirect('/login?exists=true')
+      res.redirect('/login')
     } else {
         bcrypt.hash(req.body.password, 10).then(function(hash){
           req.body.password = hash;
           // console.log(req.body);
           linkQuery.userTable(req.body)
           .then(function(){
+
             // res.send('Welcome!'),
             res.redirect('/game')
+
           })
         });
       }
@@ -147,6 +149,15 @@ var score = 0
 // Initialize empty current commands array
 var commands = []
 
+// Initialize array of player socked ids
+var players = []
+
+function sendCommands(){
+    for (var i = 0; i < 3; i++) {
+        io.to(players[i]).emit('command', commands[i])
+    }
+}
+
 function generateCommands(){
     var randomSet, random
 
@@ -154,8 +165,6 @@ function generateCommands(){
         // Select a random command from each player set
         randomSet = (Math.random() * 12) + (i * 12)
         random = Math.floor(randomSet)
-
-        console.log(random)
 
         // Add the command to the commands array
         commands.push(random)
@@ -198,7 +207,6 @@ function moveTimer() {
 
 function checkTimer(){
     if(timer === 0){
-        console.log('over')
         io.emit('score', score)
         clearInterval(loop)
     }
@@ -212,8 +220,8 @@ function mainLoop() {
 // Perform this callback when a player connects to the '/game' route
 io.on('connection', function(socket) {
     // Send player their playerId
-    console.log('id')
     io.to(socket.id).emit('id', ++id)
+    players.push(socket.id)
 
     // Start the game if the this is the 3rd player to join
     if (id === 3) {
@@ -224,7 +232,7 @@ io.on('connection', function(socket) {
         generateCommands()
 
         // Send an individual command to each player
-        io.to(socket.id).emit('command', commands[id - 1])
+        sendCommands()
 
         // Start the main timer loop
         loop = setInterval(mainLoop, 1000)
@@ -233,23 +241,25 @@ io.on('connection', function(socket) {
         id = 0
     }
 
-    // When receiving a button message, push that button id to all players
-    socket.on('button', (msg) => {
-        // If the last command is fulfilled
-        if(!checkCommands(msg)){
-            // Add to the score total
-            score += 3
 
-            // Send the updated score the the players
-            io.emit('score', score)
+})
 
-            // Generate new commands
-            generateCommands()
+// When receiving a button message, push that button id to all players
+io.on('button', (msg) => {
+    // If the last command is fulfilled
+    if(!checkCommands(msg)){
+        // Add to the score total
+        score += 3
 
-            // Send the new command to the player
-            io.to(socket.id).emit('command', commands[id - 1])
-        }
-    })
+        // Send the updated score the the players
+        io.emit('score', score)
+
+        // Generate new commands
+        generateCommands()
+
+        // Send the new command to the player
+        sendCommands()
+    }
 })
 
 http.listen(port, () => {
