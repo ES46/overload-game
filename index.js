@@ -215,8 +215,11 @@ io.on('connection', function(socket) {
     io.to(socket.id).emit('id', ++id)
     players.push(socket.id)
 
-    // Start the game if the this is the 3rd player to join
+    // Start the game if this is the 3rd player to join
     if (id === 3) {
+        // Reset the timer
+        timer = duration
+
         // Send the start message to all players
         io.emit('start', true)
 
@@ -232,24 +235,25 @@ io.on('connection', function(socket) {
         // Reset the id counter
         id = 0
     }
-})
 
-// When receiving a button message, push that button id to all players
-io.on('button', (msg) => {
-    // If the last command is fulfilled
-    if(!checkCommands(msg)){
-        // Add to the score total
-        score += 3
+    // When receiving a button message, push that button id to all players
+    socket.on('button', (msg) => {
+        console.log('button pressed')
+        // If the last command is fulfilled
+        if(!checkCommands(msg)){
+            // Add to the score total
+            score += 3
 
-        // Send the updated score the the players
-        io.emit('score', score)
+            // Send the updated score the the players
+            io.emit('score', score)
 
-        // Generate new commands
-        generateCommands()
+            // Generate new commands
+            generateCommands()
 
-        // Send the new command to the player
-        sendCommands()
-    }
+            // Send the new commands to the players
+            sendCommands()
+        }
+    })
 })
 
 http.listen(port, () => {
