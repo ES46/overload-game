@@ -66,22 +66,28 @@ app.get('/user/:id', (req, res) => {
   })
 })
 
-var id = 0
+// Start with 1 for the first playerId
+var id = 1
 
+// Perform this callback when a player connects to the '/game' route
 io.on('connection', function(socket){
-  // console.log('a user connected')
-  socket.to(socket.id).emit('id', id)
+  // Send player their playerId
+  io.to(socket.id).emit('id', id)
+
+  // Start the game if the this is the 4th player to join
+  if(id === 4){
+      io.emit('start', true)
+  }
+
+  // Increment the id for the next player to join
   id++
 
+  // When receiving a button message, push that button id to all players
   socket.on('button', (msg) => {
     io.emit('button', msg)
   })
-  // socket.join('game', function(){
-  //   console.log(socket.rooms); // [ <socket.id>, 'room 237' ]
-  //   io.to('game', 'a new user has joined the room') // broadcast to everyone in the room
-  // })
 })
 
 http.listen(port, () => {
-  console.log(`listening on ${port}`);
-});
+    console.log(`listening on ${port}`)
+})

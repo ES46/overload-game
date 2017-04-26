@@ -12,7 +12,7 @@
 </head>
 
 <body>
-  <h1 class="game_title" align="center">💥 AGILE OVERLOAD💥</h1>
+  <h1 class="game_title" align="center">💥 AGILE OVERLOAD 💥</h1>
   <div class="container">
     <div class="row">
       <div class="shell-wrap col-lg-4">
@@ -28,9 +28,7 @@
       <div id="myProgress">
         <div id="myBar"></div>
       </div>
-      <div id="time">
-
-      </div>
+      <div id="time"></div>
       <div class="container">
         <div class="row leftbuttons">
           <button class="b1 col-xs-6 col-sm-4 col-md-2 col-lg-2" type="button" name="button" id="1">Create User Story</button>
@@ -49,11 +47,16 @@
           <button class="b12 col-xs-6 col-sm-4 col-md-2 col-lg-2" type="button" name="button" id="12">Debug</button>
         </div>
       </div>
+    </div>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="/socket.io/socket.io.js"></script>
   <script src="/app.js"></script>
   <script>
+      // Initialize socket connection
       var socket = io()
+
+      // Initialize player's playerId
+      var playerId
 
       var oneMinute = 60 * 1,
           duration = oneMinute,
@@ -63,19 +66,30 @@
           width = 0;
 
       $(function() {
+          // Initialize event listener for the buttons
           document.querySelector('.container').addEventListener('click', function(event) {
             if(event.target.classList.contains('col-xs-6')){
+                // Send the button's id to the server's socket
                 socket.emit('button', event.target.id)
             }
+          })
+
+          // Save the player's id when received from server's socket
+          socket.on('id', function(msg) {
+              console.log(msg)
+              playerId = msg
+          })
+
+          // Start the mainLoop once the start message is received from server
+          socket.on('start', function(msg) {
+              if(msg){
+                  setInterval(mainLoop, 1000)
+              }
           })
 
           socket.on('button', function(msg) {
               console.log(msg)
           })
-          
-          setInterval(mainLoop, 1000)
-          randomCommand()
-
       });
   </script>
 </body>

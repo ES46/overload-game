@@ -1,4 +1,3 @@
-
 function getGif() {
   var url = 'https://api.giphy.com/v1/gifs/search?q=8bit+bomb&limit=10&api_key=dc6zaTOxFJmzC&offset=0'
   $.get(url)
@@ -33,8 +32,8 @@ function moveBar() {
     if (width >= 100) {
         // clearInterval(id);
     } else {
-        width += 5/3;
-        elem.style.width = width + '%';
+        width += 5/3
+        elem.style.width = width + '%'
     }
 }
 
@@ -46,24 +45,24 @@ function mainLoop(){
  var commands = ['fulfill sprint backlog', 'fix build-breaker', 'reference burndown chart', 'report fail-fast', 'begin sprint', 'complete task', 'consult task board', 'reduce technical debt', 'begin test automation', 'get user story', 'increase velocity', 'git push ORIGIN MASTER', 'git pull ORIGIN MASTER', 'water the garden', 'ready test', 'prioritize backlog', 'breakdown epic', 'create kanban', 'start iteration', 'communicate customer intent', 'call stand-up', 'agree on poker plan', 'consult stakeholder', 'submit pull request', 'start test-driven development', 'update wiki', 'buy ping-pong balls', 'fill keg', 'deploy app','take a nap on the couch']
 
  function randomCommand () {
-   for (var i = 0; i < commands.length; i++) {
-     console.log(commands[i]);
-   }
+    for (var i = 0; i < commands.length; i++) {
+        console.log(commands[i]);
+    }
     var randomSet, random
     // console.log(random);
 
     for (var i = 0; i < 4; i++) {
-       randomSet = Math.random() * commands.length
-       random = Math.floor(randomSet)
-      console.log(random);
+        randomSet = Math.random() * commands.length
+        random = Math.floor(randomSet)
+        console.log(random);
     }
 
  }
 
- function onSignIn(googleUser) {
-  var profile = googleUser.getBasicProfile();
-  console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
-  console.log('Name: ' + profile.getName());
-  console.log('Image URL: ' + profile.getImageUrl());
-  console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
+function onSignIn(googleUser) {
+    var profile = googleUser.getBasicProfile();
+    console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
+    console.log('Name: ' + profile.getName());
+    console.log('Image URL: ' + profile.getImageUrl());
+    console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
 }
