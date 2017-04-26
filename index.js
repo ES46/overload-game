@@ -5,7 +5,7 @@ const app = express()
 const http = require('http').Server(app)
 const io = require('socket.io')(http)
 const pg = require('./db/knex')
-const port = process.env.PORT || 3015
+const port = process.env.PORT || 3020
 const cookieSession = require('cookie-session')
 const bcrypt = require('bcrypt')
 // const saltRounds = 8
@@ -85,7 +85,7 @@ app.post('/signup', function(req, res, next) {
   linkQuery.findUserIfExists({playername: req.body.playername})
   .then(function(user){
     if(user){
-      res.send(user)
+      res.redirect('/game')
     } else {
       // var hashedPassword = bcrypt.genSalt(8, (err, salt){
         bcrypt.hash(req.body.password, 10).then(function(hash){
@@ -93,7 +93,8 @@ app.post('/signup', function(req, res, next) {
           console.log(req.body);
           linkQuery.userTable(req.body)
           .then(function(){
-            res.send('new user');
+            console.log('I worked at the newuser');
+            res.redirect('/newuser');
           })
         });
       }
