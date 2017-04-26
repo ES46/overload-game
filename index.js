@@ -81,6 +81,7 @@ app.get('/user/:id', (req, res) => {
 })
 
 app.post('/signup', function(req, res, next) {
+  console.log(req.body.playername);
   linkQuery.findUserIfExists({playername: req.body.playername})
   .then(function(user){
     if(user){
@@ -103,16 +104,14 @@ app.post('/signup', function(req, res, next) {
 })
 
 app.post('/login', function(req, res, next) {
-  linkQuery.findUserIfExists().where({
-    playername: req.body.email
-  }).first()
+  linkQuery.findUserIfExists({playername: req.body.playername})
   .then(function(user){
     if(user){
       bcrypt.compare(req.body.password, user.password)
       .then(function(data){
         if(data){
           req.session.id = req.body.id
-          res.send('Logged in!')
+          res.redirect('/game')
         } else {
           res.send('Incorrect password. Try again.')
         }

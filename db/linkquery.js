@@ -14,7 +14,7 @@ function findUserIfExists(obj){
 
 function userTable(obj) {
   return pg('player').insert({
-    playername: obj.email,
+    playername: obj.playername,
     password: obj.password
   })
 }
