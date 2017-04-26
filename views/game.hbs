@@ -14,7 +14,7 @@
 
 <body>
   <h1 class="game_title" align="center"><i class="fa fa-bomb" aria-hidden="true"></i> AGILE OVERLOAD <i class="fa fa-bomb" aria-hidden="true"></i></h1>
-  
+
   <div class="container">
     <div class="row">
       <div class="shell-wrap col-lg-4">
@@ -60,12 +60,10 @@
       // Initialize player's playerId
       var playerId
 
-      var oneMinute = 60 * 1,
-          duration = oneMinute,
-          timer = duration, minutes, seconds,
-          display = $('#time'),
-          elem = document.getElementById("myBar"),
-          width = 0;
+      var width = 0,
+          time = $('#time'),
+          bar = document.getElementById("myBar"),
+          score = $('#score')
 
       $(function() {
           // Initialize event listener for the buttons
@@ -83,22 +81,24 @@
               addButtons(playerId)
           })
 
+          // Add received command to the terminal when receiving from server
           socket.on('command', function(msg) {
               console.log(msg)
               addCommand(msg)
           })
 
-          // Start the mainLoop once the start message is received from server
-          socket.on('start', function(msg) {
-              if(msg){
-                  setInterval(mainLoop, 1000)
-              }
+          // Update the timer and bar when receiving new time from server
+          socket.on('timer', function(msg){
+              time.text(msg[0] + ":" + msg[1])
+              moveBar()
           })
 
-          socket.on('button', function(msg) {
+          // Update the displayed score
+          socket.on('score', function(msg){
               console.log(msg)
+              score.text(msg)
           })
-      });
+      })
   </script>
 </body>
 
