@@ -3,9 +3,9 @@ body{
   color: dimgrey;
   font: 1.5em 'Andale Mono', Consolas, 'Courier New';
   height: 100%;
-  background: url(texture.png) repeat;
+  background: url(pow-star.png) repeat;
   background-size: 100%;
-  overflow: hidden;
+  /*overflow: hidden;*/
 }
 
 .splash{
