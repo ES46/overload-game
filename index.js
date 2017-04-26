@@ -8,7 +8,6 @@ const pg = require('./db/knex')
 const port = process.env.PORT || 3020
 const cookieSession = require('cookie-session')
 const bcrypt = require('bcrypt')
-// const saltRounds = 8
 const key = process.env.COOKIE_KEY || 'gfddsahkjgrhjker'
 
 app.set('view engine', 'hbs')
@@ -81,20 +80,23 @@ app.get('/user/:id', (req, res) => {
 })
 
 app.post('/signup', function(req, res, next) {
-  console.log(req.body.playername);
+  // console.log(req.body.playername);
   linkQuery.findUserIfExists({playername: req.body.playername})
   .then(function(user){
     if(user){
-      res.redirect('/game')
+
+      res.redirect('/login')
+
     } else {
-      // var hashedPassword = bcrypt.genSalt(8, (err, salt){
         bcrypt.hash(req.body.password, 10).then(function(hash){
           req.body.password = hash;
-          console.log(req.body);
+          // console.log(req.body);
           linkQuery.userTable(req.body)
           .then(function(){
-            console.log('I worked at the newuser');
-            res.redirect('/newuser');
+
+            // res.send('Welcome!'),
+            res.redirect('/game')
+
           })
         });
       }
@@ -118,7 +120,7 @@ app.post('/login', function(req, res, next) {
         }
       })
         } else {
-          res.send('Invalid login')
+          res.send('Invalid login.  Please create an account.')
     }
   })
 })
@@ -197,6 +199,7 @@ function mainLoop() {
 // Perform this callback when a player connects to the '/game' route
 io.on('connection', function(socket) {
     // Send player their playerId
+    console.log('id')
     io.to(socket.id).emit('id', ++id)
 
     // Start the game if the this is the 3rd player to join
@@ -216,9 +219,6 @@ io.on('connection', function(socket) {
         // Reset the id counter
         id = 0
     }
-
-    // Increment the id for the next player to join
-    id++
 
     // When receiving a button message, push that button id to all players
     socket.on('button', (msg) => {

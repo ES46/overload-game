@@ -23,16 +23,16 @@
         <form class="sign-up-form col-lg-6" action="/signup" method="POST">
             <div class="form-group">
                 <label for="signUp">Sign Up</label>
-                <input type="text" name="playername" class="form-control" id="email" placeholder="email">
-                <input type="password" name="password" class="form-control" id="password" placeholder="password">
+                <input type="text" name="playername" class="form-control" id="email" placeholder="email" required>
+                <input type="password" name="password" class="form-control" id="password" placeholder="password" required>
                 <button type="submit"  class="btn btn-sm" align="center">Create an Account</button>
             </div>
         </form>
         <form class="sign-in-form col-lg-6" action="/login" method="post">
           <div class="form-group">
             <label for="signIn">Sign In</label>
-            <input type="text" name="playername" class="form-control" id="email" placeholder="email">
-            <input type="password" name="password" class="form-control" id="password" placeholder="password">
+            <input type="text" name="playername" class="form-control" id="email" placeholder="email" required>
+            <input type="password" name="password" class="form-control" id="password" placeholder="password" required>
           </div>
           <button type="submit"  class="btn btn-sm" align="center">Play Game</button>
         </form>
