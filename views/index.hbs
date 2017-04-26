@@ -25,7 +25,9 @@
                 <input type="text" name="playername" class="form-control" id="email" placeholder="Username" required>
             </div>
             <button type="submit"  class="btn btn-sm" align="center">Play Game</button>
-            <div class="g-signin2" data-onsuccess="onSignIn"></div>
+
+            <div data-id="{{playername}}" class="g-signin2" data-onsuccess="onSignIn"></div>
+            
 
         </form>
         <div class="col-lg-3"></div>
@@ -36,11 +38,11 @@
     <script src="https://apis.google.com/js/platform.js" async defer></script>
     <script src="/socket.io/socket.io.js"></script>
     <script src="/app.js"></script>
-    <script>
+    <!-- <script>
     $('document').ready(){
       onSignIn(googleUser)
     }
-    </script>
+    </script> -->
 </body>
 
 </html>
