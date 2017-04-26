@@ -8,17 +8,28 @@ function addUser(obj) {
   return pg('player').insert(obj)
 }
 
-function getNewId(id) {
-  return pg('player').select().where('id', id)
+function findUserIfExists(obj){
+  return pg('player').select().where(obj).first()
 }
 
-function getGoogleId(obj) {
-  return pg('player').insert(obj)
+function userTable(obj) {
+  return pg('player').insert({
+    playername: obj.playername,
+    password: obj.password
+  })
 }
 
-
-
+// function getNewId(id) {
+//   return pg('player').select().where('id', id)
+// }
+//
+// function getGoogleId(obj) {
+//   return pg('player').insert(obj)
+// }
+//
 module.exports = {
   getUser,
-  addUser
+  addUser,
+  userTable,
+  findUserIfExists
 };

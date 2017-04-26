@@ -14,32 +14,11 @@ function getGif() {
         })
 }
 
-function moveTimer() {
-    minutes = parseInt(timer / 60, 10)
-    seconds = parseInt(timer % 60, 10)
-
-    minutes = minutes < 10 ? '0' + minutes : minutes
-    seconds = seconds < 10 ? '0' + seconds : seconds
-
-    display.text(minutes + ':' + seconds)
-
-    if (--timer < 0) {
-        timer = duration
-    }
-}
-
 function moveBar() {
-    if (width >= 100) {
-        // clearInterval(id);
-    } else {
+    if(width < 100){
         width += 5 / 3
-        elem.style.width = width + '%'
+        bar.style.width = width + '%'
     }
-}
-
-function mainLoop() {
-    moveTimer()
-    moveBar()
 }
 
 var commands = [
@@ -145,11 +124,11 @@ function addButtons(id){
 }
 
 function addCommand(id){
-    var tempButton = document.createElement('li')
+    var tempCommand = document.createElement('li')
     var tempText = document.createTextNode(commands[id])
-    tempButton.id = id
-    tempButton.appendChild(tempText)
-    $('.shell-body').append(tempButton)
+    tempCommand.id = id
+    tempCommand.appendChild(tempText)
+    $('.shell-body').append(tempCommand)
 }
 
 function onSignIn(googleUser) {
@@ -170,6 +149,7 @@ function onSignIn(googleUser) {
 //     url : '/user',
 //     method : 'POST'
 //   })
+// })
 
 function bombClick() {
   $('.bomb').click((event) => {
