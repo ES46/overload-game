@@ -75,7 +75,7 @@ io.on('connection', function(socket){
   // Send player their playerId
   io.to(socket.id).emit('id', id)
 
-  // Start the game if the this is the 4th player to join
+  // Start the game if this is the 4th player to join
   if(id === 4){
       io.emit('start', true)
   }
