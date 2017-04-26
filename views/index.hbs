@@ -21,13 +21,18 @@
 
         <form class="sign-in-form col-lg-6" action="/user" method="POST">
             <div class="form-group">
-                <label for="email">Enter Username</label>
-                <input type="text" name="playername" class="form-control" id="email" placeholder="Username" required>
+                <!-- <label for="signUp">Sign Up</label>
+                <input type="text" name="playername" class="form-control" id="email" placeholder="email">
+                <input type="text" name="password" class="form-control" id="password" placeholder="password">
             </div>
-            <button type="submit"  class="btn btn-sm" align="center">Play Game</button>
+            <div class="form-group">
+              <label for="signIn">Sign In</label>
+              <input type="text" name="playername" class="form-control" id="email" placeholder="email">
+              <input type="text" name="password" class="form-control" id="password" placeholder="password">
+            </div> -->
+            <!-- <button type="submit"  class="btn btn-sm" align="center">Play Game</button> -->
 
             <div data-id="{{playername}}" class="g-signin2" data-onsuccess="onSignIn"></div>
-            
 
         </form>
         <div class="col-lg-3"></div>

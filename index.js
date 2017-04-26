@@ -6,6 +6,8 @@ const http = require('http').Server(app)
 const io = require('socket.io')(http)
 const pg = require('./db/knex')
 const port = process.env.PORT || 3015
+const cookieSession = require('cookie-session')
+const bcrypt = require('bcrypt')
 
 app.set('view engine', 'hbs')
 
