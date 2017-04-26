@@ -59,6 +59,7 @@ app.post('/user', (req, res) => {
   })
 })
 
+
 app.get('/user/:id', (req, res) => {
   linkQuery.getUser(req.params.id)
   .then(data => {
