@@ -5,7 +5,7 @@ const app = express()
 const http = require('http').Server(app)
 const io = require('socket.io')(http)
 const pg = require('./db/knex')
-const port = process.env.PORT || 3015
+const port = process.env.PORT || 3021
 const cookieSession = require('cookie-session')
 const bcrypt = require('bcrypt')
 const key = process.env.COOKIE_KEY || 'gfddsahkjgrhjker'
@@ -90,15 +90,19 @@ app.post('/signup', function(req, res, next) {
   linkQuery.findUserIfExists({playername: req.body.playername})
   .then(function(user){
     if(user){
+
       res.redirect('/login')
+
     } else {
         bcrypt.hash(req.body.password, 10).then(function(hash){
           req.body.password = hash;
           // console.log(req.body);
           linkQuery.userTable(req.body)
           .then(function(){
+
             // res.send('Welcome!'),
             res.redirect('/game')
+
           })
         });
       }
