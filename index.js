@@ -195,6 +195,7 @@ function mainLoop() {
 // Perform this callback when a player connects to the '/game' route
 io.on('connection', function(socket) {
     // Send player their playerId
+    console.log('id')
     io.to(socket.id).emit('id', ++id)
 
     // Start the game if the this is the 3rd player to join
@@ -214,9 +215,6 @@ io.on('connection', function(socket) {
         // Reset the id counter
         id = 0
     }
-
-    // Increment the id for the next player to join
-    id++
 
     // When receiving a button message, push that button id to all players
     socket.on('button', (msg) => {
