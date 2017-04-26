@@ -43,6 +43,16 @@ app.get('/login', (req, res) => {
   }
 })
 
+app.get('/signup', (req, res) => {
+  console.log(req.query.exists);
+    if(req.query.exists){
+      console.log('user exists');
+      res.render('index', {login: 'Your account already exists. Please log in!'})
+    } else {
+    res.render('index')
+  }
+})
+
 app.get('/game', (req, res) => {
     // linkQuery.getPage(req.params.id)
     // .then(data => {
@@ -90,9 +100,7 @@ app.post('/signup', function(req, res, next) {
   linkQuery.findUserIfExists({playername: req.body.playername})
   .then(function(user){
     if(user){
-
       res.redirect('/login')
-
     } else {
         bcrypt.hash(req.body.password, 10).then(function(hash){
           req.body.password = hash;
