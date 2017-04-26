@@ -4,6 +4,7 @@ exports.up = function(knex, Promise) {
     table.increments()
     table.string('playername')
     table.integer('score')
+    table.string('password')
   })
 };
 
