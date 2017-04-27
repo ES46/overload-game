@@ -98,7 +98,7 @@
             // Update the displayed score
             socket.on('score', function(msg) {
                 console.log(msg)
-                currentScore = msg + 8
+                currentScore = msg
                 score.text(msg)
             })
 
