@@ -38,20 +38,23 @@ app.get('/login', (req, res) => {
       res.render('index', {login: 'Incorrect password. Please try again.'})
     } else if (req.query.invalid){
       res.render('index', {login: `We couldn't find your account. Please sign up!`})
-    }else {
+    } else if(req.query.same) {
+      res.render('index', {login: 'Your account already exists. Please log in!'})
+    }
+    else {
     res.render('index')
   }
 })
 
-app.get('/signup', (req, res) => {
-  console.log(req.query.exists);
-    if(req.query.exists){
-      console.log('user exists');
-      res.render('index', {login: 'Your account already exists. Please log in!'})
-    } else {
-    res.render('index')
-  }
-})
+// app.get('/signup', (req, res) => {
+//   console.log(req.query.same);
+//     if(req.query.same){
+//       console.log('user exists');
+//       res.render('index', {login: 'Your account already exists. Please log in!'})
+//     } else {
+//     res.render('index')
+//   }
+// })
 
 app.get('/game', (req, res) => {
     // linkQuery.getPage(req.params.id)
@@ -99,8 +102,9 @@ app.post('/signup', function(req, res, next) {
   // console.log(req.body.playername);
   linkQuery.findUserIfExists({playername: req.body.playername})
   .then(function(user){
+    console.log(user);
     if(user){
-      res.redirect('/login')
+      res.redirect('/login?same=true')
     } else {
         bcrypt.hash(req.body.password, 10).then(function(hash){
           req.body.password = hash;
@@ -223,11 +227,8 @@ io.on('connection', function(socket) {
     io.to(socket.id).emit('id', ++id)
     players.push(socket.id)
 
-    // Start the game if this is the 3rd player to join
+    // Start the game if the this is the 3rd player to join
     if (id === 3) {
-        // Reset the timer
-        timer = duration
-
         // Send the start message to all players
         io.emit('start', true)
 
@@ -243,25 +244,24 @@ io.on('connection', function(socket) {
         // Reset the id counter
         id = 0
     }
+})
 
-    // When receiving a button message, push that button id to all players
-    socket.on('button', (msg) => {
-        console.log('button pressed')
-        // If the last command is fulfilled
-        if(!checkCommands(msg)){
-            // Add to the score total
-            score += 3
+// When receiving a button message, push that button id to all players
+io.on('button', (msg) => {
+    // If the last command is fulfilled
+    if(!checkCommands(msg)){
+        // Add to the score total
+        score += 3
 
-            // Send the updated score the the players
-            io.emit('score', score)
+        // Send the updated score the the players
+        io.emit('score', score)
 
-            // Generate new commands
-            generateCommands()
+        // Generate new commands
+        generateCommands()
 
-            // Send the new commands to the players
-            sendCommands()
-        }
-    })
+        // Send the new command to the player
+        sendCommands()
+    }
 })
 
 http.listen(port, () => {
