@@ -38,10 +38,23 @@ app.get('/login', (req, res) => {
       res.render('index', {login: 'Incorrect password. Please try again.'})
     } else if (req.query.invalid){
       res.render('index', {login: `We couldn't find your account. Please sign up!`})
-    }else {
+    } else if(req.query.same) {
+      res.render('index', {login: 'Your account already exists. Please log in!'})
+    }
+    else {
     res.render('index')
   }
 })
+
+// app.get('/signup', (req, res) => {
+//   console.log(req.query.same);
+//     if(req.query.same){
+//       console.log('user exists');
+//       res.render('index', {login: 'Your account already exists. Please log in!'})
+//     } else {
+//     res.render('index')
+//   }
+// })
 
 app.get('/game', (req, res) => {
     // linkQuery.getPage(req.params.id)
@@ -89,10 +102,9 @@ app.post('/signup', function(req, res, next) {
   // console.log(req.body.playername);
   linkQuery.findUserIfExists({playername: req.body.playername})
   .then(function(user){
+    console.log(user);
     if(user){
-
-      res.redirect('/login')
-
+      res.redirect('/login?same=true')
     } else {
         bcrypt.hash(req.body.password, 10).then(function(hash){
           req.body.password = hash;
@@ -176,7 +188,7 @@ function checkCommands(id){
     }
 
     // Return whether or not it was the last command to complete
-    return commands
+    return commands.length
 }
 
 var duration = 60,
@@ -232,8 +244,6 @@ io.on('connection', function(socket) {
         // Reset the id counter
         id = 0
     }
-
-
 })
 
 // When receiving a button message, push that button id to all players
