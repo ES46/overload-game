@@ -211,3 +211,9 @@ a {
 .form-group {
   margin-top: 200px;
 }
+
+.shell {
+    display: flex;
+    margin-left: -15px;
+    align-items: center;
+}

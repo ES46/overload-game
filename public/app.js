@@ -122,7 +122,7 @@ function addButtons(id){
         }
 
         // Test code for testing without Heroku
-        
+
         // for (var i = 0; i < 36; i++) {
         //     var tempButton = document.createElement('button')
         //     var tempText = document.createTextNode(commands[i])
@@ -167,6 +167,7 @@ function bombClick() {
   $('.bomb').click((event) => {
     var current = event.target
     $('.bomb').remove()
+    $('.splash-text').remove()
       getGif()
       setTimeout(function(){
       $.ajax({
