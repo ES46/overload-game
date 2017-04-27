@@ -239,6 +239,7 @@ function checkTimer(){
 
         players = []
         commands = []
+        score = 0
 
         // Reset the timer to one minute
         timer = duration
