@@ -120,6 +120,18 @@ function addButtons(id){
             tempButton.appendChild(tempText)
             $('.leftbuttons').append(tempButton)
         }
+
+        // Test code for testing without Heroku
+        
+        // for (var i = 0; i < 36; i++) {
+        //     var tempButton = document.createElement('button')
+        //     var tempText = document.createTextNode(commands[i])
+        //     tempButton.className = 'b12 col-xs-6 col-sm-4 col-md-2 col-lg-2'
+        //     tempButton.type = 'button'
+        //     tempButton.id = i
+        //     tempButton.appendChild(tempText)
+        //     $('.leftbuttons').append(tempButton)
+        // }
     }
 }
 

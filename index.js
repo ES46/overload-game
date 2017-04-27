@@ -184,7 +184,7 @@ function checkCommands(id){
     }
 
     // Return whether or not it was the last command to complete
-    return commands
+    return commands.length
 }
 
 var duration = 60,

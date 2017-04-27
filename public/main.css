@@ -371,6 +371,11 @@ button:before {
 }
 
 .shell-body {
+    height: 10em;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    overflow: hidden;
   margin: 0;
   padding: 5px;
   list-style: none;

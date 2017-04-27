@@ -21,16 +21,16 @@
                 <p class="shell-top-bar">/agile-overload/</p>
                 <ul class="shell-body">
                     <!-- <li>cd&nbsp;/Users/</li>
-          <li>cd ../../../../</li>
-          <li>pwd</li>
-          <li>/Users/</li> -->
+                    <li>cd ../../../../</li>
+                    <li>pwd</li>
+                    <li>/Users/</li> -->
                 </ul>
             </div>
         </div>
         <div id="myProgress">
             <div id="myBar"></div>
         </div>
-        <div id="time">00:00</div>
+        <div id="time">01:00</div>
         <div class="container">
             <div class="row leftbuttons">
                 <!-- <button class="b1 col-xs-6 col-sm-4 col-md-2 col-lg-2" type="button" name="button" id="1">Create User Story</button>
@@ -69,7 +69,6 @@
             // Initialize event listener for the buttons
             document.querySelector('.container').addEventListener('click', function(event) {
                 if (event.target.classList.contains('col-xs-6')) {
-                    console.log('pressed', event.target.id)
                     // Send the button's id to the server's socket
                     socket.emit('button', event.target.id)
                 }
