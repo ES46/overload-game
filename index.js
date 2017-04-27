@@ -212,6 +212,7 @@ function moveTimer() {
 function checkTimer(){
     if(timer === 0){
         io.emit('score', score)
+        timer = duration
         clearInterval(loop)
     }
 }
