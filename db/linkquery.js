@@ -19,6 +19,10 @@ function userTable(obj) {
   })
 }
 
+function selectAll(playername){
+  return pg('player').select().where('playername', playername)
+}
+
 // function getNewId(id) {
 //   return pg('player').select().where('id', id)
 // }
@@ -27,9 +31,11 @@ function userTable(obj) {
 //   return pg('player').insert(obj)
 // }
 //
+
 module.exports = {
   getUser,
   addUser,
   userTable,
-  findUserIfExists
+  findUserIfExists,
+  selectAll
 };
