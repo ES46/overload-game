@@ -63,7 +63,9 @@
         var width = 100,
             time = $('#time'),
             bar = document.getElementById("myBar"),
-            score = $('#score')
+            score = $('#score'),
+            currentScore = 0
+
 
         $(function() {
             // Initialize event listener for the buttons
@@ -96,13 +98,15 @@
             // Update the displayed score
             socket.on('score', function(msg) {
                 console.log(msg)
+                currentScore = msg + 8
                 score.text(msg)
             })
 
             // Reset the timer bar when the game ends
             socket.on('end', function(msg) {
                 width = 100
-                $.get()
+
+                document.location.href='/gameover?score=' + currentScore
             })
         })
     </script>

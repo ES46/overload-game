@@ -23,6 +23,10 @@ function selectAll(playername){
   return pg('player').select().where('playername', playername)
 }
 
+function updateScore(score, id) {
+  return pg('player').update('score', score).where('id', id)
+}
+
 // function getNewId(id) {
 //   return pg('player').select().where('id', id)
 // }
@@ -37,5 +41,6 @@ module.exports = {
   addUser,
   userTable,
   findUserIfExists,
-  selectAll
+  selectAll,
+  updateScore
 };

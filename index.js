@@ -63,11 +63,21 @@ app.get('/game', (req, res) => {
 })
 
 app.get('/gameover', (req, res) => {
-  linkQuery.getUser(req.session.id)
+  linkQuery.getUser(+req.session.id)
     .then(data => {
+      console.log(+req.query.score, 'new score')
+      // console.log(data.score, 'data.score');
+      console.log(data[0].score, "data.score 0");
+      data[0].newScore = +req.query.score
+      if (data[0].newScore > data[0].score) {
+        linkQuery.updateScore(+req.query.score, +req.session.id)
+        data[0].newHighScore = true
+        console.log('Highscore hit');
+
+      }
+      console.log(data[0].newHighScore);
       console.log(data);
-      console.log(req.session);
-      res.render('gameover', {data})
+      res.render('gameover', {data: data[0]})
   })
 })
 
@@ -197,7 +207,7 @@ function checkCommands(id){
     return commands.length
 }
 
-var duration = 60,
+var duration = 5,
     timer = duration,
     minutes,
     seconds,
@@ -223,6 +233,7 @@ function checkTimer(){
 
         // Send the end message to all players
         io.emit('end', true)
+
 
         // Reset the timer to one minute
         timer = duration

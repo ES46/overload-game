@@ -16,11 +16,13 @@
 <body>
   <div>
     <h1>GAME OVER</h1>
-    {{#each data}}
-      <h3>Username: {{this.playername}}</h3>
-      <h4>Score: {{this.score}}</h4>
-      <p>{{this.id}}</p>
-    {{/each}}
+    {{#if data.newHighScore}}
+      <h1>💥 New Highscore! 💥</h1>
+    {{/if}}
+      <h3>Username: {{data.playername}}</h3>
+      <h4>Score: {{data.newScore}}</h4>
+
+      <p>{{data.id}}</p>
 
   </div>
   <script>
