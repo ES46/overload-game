@@ -237,6 +237,8 @@ function checkTimer(){
         // Send the end message to all players
         io.emit('end', true)
 
+        players = []
+        commands = []
 
         // Reset the timer to one minute
         timer = duration

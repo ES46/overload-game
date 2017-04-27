@@ -89,14 +89,21 @@ button:focus {
   outline: none;
 
 }
+#signin:hover, #signup:hover{
+  color:#9CFF00;
+}
 
 #signin {
   border-radius: none;
   margin-top: 1em;
+  background-color: #313C53;
+  color: #FFFFFF;
 }
 
 #signup {
   margin-top: 1em;
+  background-color: #313C53;
+  color: #FFFFFF;
 }
 
   /*game terminal*/
@@ -287,4 +294,46 @@ color: #9CFF00;
 -moz-border-radius-bottomleft: 3px;
 border-bottom-right-radius: 3px;
 border-bottom-left-radius: 3px;
+}
+
+label{
+  color: #1C263C;
+}
+.pineapple1 {
+    width: 18em;
+    position: absolute;
+    right: 4vw;
+    height: auto;
+    bottom: 8vh;
+}
+
+.pineapple2 {
+    width: 18em;
+    position: absolute;
+    left: 4vw;
+    height: auto;
+    bottom: 8vh;
+}
+
+.kyle {
+    position: absolute;
+    width: 100%;
+    left: 20vw;
+    height: 75%;
+    bottom: 3vh;
+}
+
+.gameover {
+    position: absolute;
+    width: 100%;
+    left: 12vw;
+    top: 20vh;
+}
+
+.red {
+  color: #EE0000;
+}
+
+.score-text {
+  color: #313c53;
 }
