@@ -67,17 +67,20 @@ app.get('/gameover', (req, res) => {
     .then(data => {
       console.log(+req.query.score, 'new score')
       // console.log(data.score, 'data.score');
-      console.log(data[0].score, "data.score 0");
+      console.log(data[0].score, "data.score[0]");
       data[0].newScore = +req.query.score
       if (data[0].newScore > data[0].score) {
         linkQuery.updateScore(+req.query.score, +req.session.id)
+        .then(() => {
         data[0].newHighScore = true
         console.log('Highscore hit');
+        res.render('gameover', {data: data[0]})      })
 
-      }
+      } else {
       console.log(data[0].newHighScore);
       console.log(data);
       res.render('gameover', {data: data[0]})
+    }
   })
 })
 
@@ -207,7 +210,7 @@ function checkCommands(id){
     return commands.length
 }
 
-var duration = 5,
+var duration = 60,
     timer = duration,
     minutes,
     seconds,

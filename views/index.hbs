@@ -14,41 +14,48 @@
 </head>
 
 <body>
-    <h1 class="game_title" align="center"><i class="fa fa-bomb" aria-hidden="true"></i> AGILE OVERLOAD <i class="fa fa-bomb" aria-hidden="true"></i></h1>
-    {{#if login}}
-      <h1 class="error-messages">{{login}}</h1>
-    {{/if}}
+    <a class="" href="/"> <h1  class="game_title" align="center"><i class="fa fa-bomb" aria-hidden="true"></i> AGILE OVERLOAD <i class="fa fa-bomb" aria-hidden="true"></i></h1></a>
     <div class="container">
-        <div class="col-lg-3">
+        <div class="row shell">
+            <div class="shell-wrap col-lg-4">
+                <p class="shell-top-bar">/agile-overload/</p>
+                <div class="shell-body-index">
+                    <h4>~ $You and your team are developing a product, work together with your SCRUM master to be as agile as possible to keep the funding going, if your funding runs out, you lose!</h4>
+
+                </div>
+            </div>
         </div>
 
 
-        <form class="sign-up-form col-lg-6" action="/signup" method="POST">
-            <div class="form-group">
+    <div class="form">
+        <form class="" action="/signup" method="POST">
+            <div class="dope">
                 <label for="signUp">Sign Up</label>
                 <input type="email" name="playername" class="form-control" id="email" placeholder="email" required>
                 <input type="password" name="password" class="form-control" id="password" placeholder="password" required>
                 <button id="signup" type="submit"  class="btn btn-sm" align="center">Create an Account</button>
             </div>
         </form>
-        <form class="sign-in-form col-lg-6" action="/login" method="post">
-          <div class="form-group">
+        <form class="sign-in-form " action="/login" method="post">
+          <div class="dope1">
             <label for="signIn">Sign In</label>
 
 
-            <input type="email" name="playername" class="form-control" id="email" placeholder="email" required>
-            <input type="password" name="password" class="form-control" id="password" placeholder="password" required>
+            <input type="email" name="playername" class="form-control" id="email1" placeholder="email" required>
+            <input type="password" name="password" class="form-control" id="password2" placeholder="password" required>
 
           </div>
           <button id="signin" type="submit"  class="btn btn-sm" align="center">Play Game</button>
         </form>
 
             <div data-id="{{playername}}" class="g-signin2" data-onsuccess="onSignIn"></div>
-            <!-- <div class="about">
-              <p>You and your team are developing a product, work together with your SCRUM master to be as agile as possible to keep the funding going, if your funding runs out, you lose!</p>
-            </div>
 
-        </form>
+            {{#if login}}
+              <h1 class="error-messages">{{login}}</h1>
+            {{/if}}
+
+
+        <!--</form>
         <div class="col-lg-3"></div>
       </div>
 
