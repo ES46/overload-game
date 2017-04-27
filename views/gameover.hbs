@@ -15,11 +15,18 @@
 
 <body>
   <div>
+    <h1>GAME OVER</h1>
     {{#each data}}
       <h3>Username: {{this.playername}}</h3>
-      <h4>Highscore: {{this.score}}</h4>
+      <h4>Score: {{this.score}}</h4>
+      <p>{{this.id}}</p>
     {{/each}}
+
   </div>
+  <script>
+
+
+  </script>
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="/app.js"></script>

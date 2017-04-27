@@ -5,7 +5,7 @@ const app = express()
 const http = require('http').Server(app)
 const io = require('socket.io')(http)
 const pg = require('./db/knex')
-const port = process.env.PORT || 3021
+const port = process.env.PORT || 3022
 const cookieSession = require('cookie-session')
 const bcrypt = require('bcrypt')
 const key = process.env.COOKIE_KEY || 'gfddsahkjgrhjker'
@@ -62,12 +62,14 @@ app.get('/game', (req, res) => {
     res.render('game')
 })
 
-// app.get('/username', (req, res) => {
-//   linkQuery.getUser(req.params.id)
-//     .then(data => {
-//     res.render('user')
-//   })
-// })
+app.get('/gameover', (req, res) => {
+  linkQuery.getUser(req.session.id)
+    .then(data => {
+      console.log(data);
+      console.log(req.session);
+      res.render('gameover', {data})
+  })
+})
 
 // app.post('/user', (req, res) => {
 //   console.log(req.params.id);
@@ -111,9 +113,12 @@ app.post('/signup', function(req, res, next) {
           // console.log(req.body);
           linkQuery.userTable(req.body)
           .then(function(){
-
+            linkQuery.findUserIfExists({playername: req.body.playername})
+            .then((data) => {
+            req.session.id = data.id
             // res.send('Welcome!'),
             res.redirect('/game')
+          })
 
           })
         });
@@ -131,7 +136,8 @@ app.post('/login', function(req, res, next) {
       bcrypt.compare(req.body.password, user.password)
       .then(function(data){
         if(data){
-          req.session.id = req.body.id
+          console.log(user.id);
+          req.session.id = user.id
           res.redirect('/game')
         } else {
           // res.send('Incorrect password. Try again.')
