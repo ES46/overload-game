@@ -28,16 +28,19 @@
                 <label for="signUp">Sign Up</label>
                 <input type="email" name="playername" class="form-control" id="email" placeholder="email" required>
                 <input type="password" name="password" class="form-control" id="password" placeholder="password" required>
-                <button type="submit"  class="btn btn-sm" align="center">Create an Account</button>
+                <button id="signup" type="submit"  class="btn btn-sm" align="center">Create an Account</button>
             </div>
         </form>
         <form class="sign-in-form col-lg-6" action="/login" method="post">
           <div class="form-group">
             <label for="signIn">Sign In</label>
+
+
             <input type="email" name="playername" class="form-control" id="email" placeholder="email" required>
             <input type="password" name="password" class="form-control" id="password" placeholder="password" required>
+
           </div>
-          <button type="submit"  class="btn btn-sm" align="center">Play Game</button>
+          <button id="signin" type="submit"  class="btn btn-sm" align="center">Play Game</button>
         </form>
 
             <div data-id="{{playername}}" class="g-signin2" data-onsuccess="onSignIn"></div>
