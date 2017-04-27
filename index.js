@@ -210,9 +210,18 @@ function moveTimer() {
 }
 
 function checkTimer(){
+    // If the timer runs out...
     if(timer === 0){
+        // Send the final score to all players
         io.emit('score', score)
+
+        // Send the end message to all players
+        io.emit('end', true)
+
+        // Reset the timer to one minute
         timer = duration
+
+        // Stop the main loop
         clearInterval(loop)
     }
 }
@@ -226,6 +235,8 @@ function mainLoop() {
 io.on('connection', function(socket) {
     // Send player their playerId
     io.to(socket.id).emit('id', ++id)
+
+    // Add this players socket ID to the array of players
     players.push(socket.id)
 
     // Start the game if the this is the 3rd player to join
@@ -248,7 +259,7 @@ io.on('connection', function(socket) {
 
     // When receiving a button message, push that button id to all players
     socket.on('button', (msg) => {
-        // If the last command is fulfilled
+        // If the last command is fulfilled...
         if(!checkCommands(msg)){
             // Add to the score total
             score += 3

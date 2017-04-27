@@ -15,8 +15,8 @@ function getGif() {
 }
 
 function moveBar() {
-    if(width < 100){
-        width += 5 / 3
+    if(width > 0){
+        width -= 5 / 3
         bar.style.width = width + '%'
     }
 }
@@ -61,8 +61,6 @@ var commands = [
 ]
 
 function addButtons(id){
-    var pos = id - 1
-
     if(id === 1){
         for (var i = 0; i < 6; i++) {
             var tempButton = document.createElement('button')
@@ -122,7 +120,7 @@ function addButtons(id){
         }
 
         // Test code for testing without Heroku
-        
+
         // for (var i = 0; i < 36; i++) {
         //     var tempButton = document.createElement('button')
         //     var tempText = document.createTextNode(commands[i])
