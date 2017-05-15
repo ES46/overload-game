@@ -234,12 +234,12 @@ function checkTimer(){
         // Send the final score to all players
         io.emit('score', score)
 
-        // Send the end message to all players
-        io.emit('end', true)
-
         players = []
         commands = []
         score = 0
+
+        // Send the end message to all players
+        io.emit('end', true)
 
         // Reset the timer to one minute
         timer = duration
