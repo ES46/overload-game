@@ -70,7 +70,7 @@ function addButtons(id){
 
         for(let i = 6; i < 12; i++){
             let tempButton = document.createElement('button')
-            let tempText = document.createTextNode(commands[i]
+            let tempText = document.createTextNode(commands[i])
             tempButton.className = 'b12 col-xs-6 col-sm-4 col-md-2 col-lg-2'
             tempButton.type = 'button'
             tempButton.id = i
