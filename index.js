@@ -15,152 +15,110 @@ app.set('view engine', 'hbs')
 app.use(bodyParser.urlencoded({
     extended: false
 }))
+
 app.use(bodyParser.json())
 app.use(express.static('public'))
 
 app.use(cookieSession({
-  name: 'session',
-  keys: [key],
-  maxAge: 24*60*60*1000
+	name: 'session',
+	keys: [key],
+	maxAge: 24*60*60*1000
 }))
 
 app.get('/', (req, res) => {
-    // linkQuery.getGif()
-    // .then()=>{
-    res.render('splash')
-    // }
+    res.render('splash') 
 })
 
 app.get('/login', (req, res) => {
-  console.log(req.query.incorrect);
-    if(req.query.incorrect){
-      console.log('incorrect');
-      res.render('index', {login: 'Incorrect password. Please try again.'})
-    } else if (req.query.invalid){
-      res.render('index', {login: `We couldn't find your account. Please sign up!`})
-    } else if(req.query.same) {
-      res.render('index', {login: 'Your account already exists. Please log in!'})
-    }
-    else {
-    res.render('index')
-  }
+	if(req.query.incorrect){
+		res.render('index', {login: 'Incorrect password. Please try again.'})
+    }else if(req.query.invalid){
+		res.render('index', {login: `We couldn't find your account. Please sign up!`})
+    }else if(req.query.same){
+		res.render('index', {login: 'Your account already exists. Please log in!'})
+    }else{
+		res.render('index')
+	}
 })
 
-// app.get('/signup', (req, res) => {
-//   console.log(req.query.same);
-//     if(req.query.same){
-//       console.log('user exists');
-//       res.render('index', {login: 'Your account already exists. Please log in!'})
-//     } else {
-//     res.render('index')
-//   }
-// })
-
 app.get('/game', (req, res) => {
-    // linkQuery.getPage(req.params.id)
-    // .then(data => {
-    res.render('game')
+	res.render('game')
 })
 
 app.get('/gameover', (req, res) => {
-  linkQuery.getUser(+req.session.id)
-    .then(data => {
-      console.log(+req.query.score, 'new score')
-      // console.log(data.score, 'data.score');
-      console.log(data[0].score, "data.score[0]");
-      data[0].newScore = +req.query.score
-      if (data[0].newScore > data[0].score) {
-        linkQuery.updateScore(+req.query.score, +req.session.id)
-        .then(() => {
-        data[0].newHighScore = true
-        console.log('Highscore hit');
-        res.render('gameover', {data: data[0]})      })
-
-      } else {
-      console.log(data[0].newHighScore);
-      console.log(data);
-      res.render('gameover', {data: data[0]})
-    }
-  })
+	linkQuery.getUser(+req.session.id)
+	.then(data => {
+		data[0].newScore = +req.query.score
+		if(data[0].newScore > data[0].score){
+			linkQuery.updateScore(+req.query.score, +req.session.id)
+			.then(() => {
+				data[0].newHighScore = true
+				res.render('gameover', {data: data[0]})
+			})
+		}else{
+			res.render('gameover', {data: data[0]})
+    	}
+	})
 })
 
-// app.post('/user', (req, res) => {
-//   console.log(req.params.id);
-//   req.body.id = req.params.id
-//   var userId = req.params.id
-//   console.log(userId)
-//   linkQuery.addUser(req.body)
-//   .then(()=> {
-//     res.redirect('/user/' + userId)
-//     console.log(req.params.id)
-//   })
-// })
-
 app.post('/user', (req, res) => {
-    console.log(req.body)
     linkQuery.addUser(req.body)
-        .then(() => {
-            res.redirect('/game')
-        })
+    .then(() => {
+    	res.redirect('/game')
+    })
 })
 
 app.get('/user/:id', (req, res) => {
     linkQuery.getUser(req.params.id)
-        .then(data => {
-            res.render('user', {
-                data
-            })
+    .then(data => {
+    	res.render('user', {
+        	data
         })
+    })
 })
 
-app.post('/signup', function(req, res, next) {
-  // console.log(req.body.playername);
-  linkQuery.findUserIfExists({playername: req.body.playername})
-  .then(function(user){
-    console.log(user);
-    if(user){
-      res.redirect('/login?same=true')
-    } else {
-        bcrypt.hash(req.body.password, 10).then(function(hash){
-          req.body.password = hash;
-          // console.log(req.body);
-          linkQuery.userTable(req.body)
-          .then(function(){
-            linkQuery.findUserIfExists({playername: req.body.playername})
-            .then((data) => {
-            req.session.id = data.id
-            // res.send('Welcome!'),
-            res.redirect('/game')
-          })
-
-          })
-        });
-      }
-  })
-  .catch(function(obj){
-    console.log('error on posting new user to db', obj);
-  })
+app.post('/signup', (req, res, next) => {
+	linkQuery.findUserIfExists({playername: req.body.playername})
+	.then(user => {
+    	if(user){
+    		res.redirect('/login?same=true')
+    	}else{
+    		bcrypt.hash(req.body.password, 10)
+			.then(hash => {
+     			req.body.password = hash;
+				linkQuery.userTable(req.body)
+        		.then(() => {
+            		linkQuery.findUserIfExists({playername: req.body.playername})
+            		.then(data => {
+            			req.session.id = data.id
+            			res.redirect('/game')
+          			})
+				})
+        	})
+		}
+	})
+	.catch(obj => {
+    	console.log('error on posting new user to db', obj)
+  	})
 })
 
-app.post('/login', function(req, res, next) {
-  linkQuery.findUserIfExists({playername: req.body.playername})
-  .then(function(user){
-    if(user){
-      bcrypt.compare(req.body.password, user.password)
-      .then(function(data){
-        if(data){
-          console.log(user.id);
-          req.session.id = user.id
-          res.redirect('/game')
-        } else {
-          // res.send('Incorrect password. Try again.')
-          res.redirect('/login?incorrect=true')
-        }
-      })
-        } else {
-          res.redirect('/login?invalid=true')
-    }
-  })
+app.post('/login', (req, res, next) => {
+	linkQuery.findUserIfExists({playername: req.body.playername})
+	.then(user => {
+		if(user){
+			bcrypt.compare(req.body.password, user.password)
+			.then(data => {
+				if(data){
+					req.session.id = user.id
+					res.redirect('/game')
+				}else{
+					res.redirect('/login?incorrect=true')
+				}
+			})
+        }else{
+			res.redirect('/login?invalid=true')
+		}
+	})
 })
 
 // Start with 1 for the first playerId
@@ -194,14 +152,14 @@ function generateCommands(){
     }
 
     // Randomize the order of the commands
-    commands.sort(function(a, b){return 0.5 - Math.random()})
+    commands.sort((a, b) => { return 0.5 - Math.random() })
 }
 
 function checkCommands(id){
     // If the pressed button is in the commands array
     if(commands.includes(+id)){
         // Removed the correctly pressed command from the remaining commands
-        commands = commands.filter((entry) => {
+        commands = commands.filter(entry => {
             return entry !== +id
         })
     }
@@ -231,7 +189,7 @@ function moveTimer() {
 function checkTimer(){
     // If the timer runs out...
     if(timer === 0){
-        // Send the final score to all players
+		// Send the final score to all players
         io.emit('score', score)
 
         players = []
@@ -255,15 +213,20 @@ function mainLoop() {
 }
 
 // Perform this callback when a player connects to the '/game' route
-io.on('connection', function(socket) {
-    // Send player their playerId
-    io.to(socket.id).emit('id', ++id)
+io.on('connection', (socket) => {
+    // Increment id variable on new player join
+	id++
 
     // Add this players socket ID to the array of players
     players.push(socket.id)
 
     // Start the game if the this is the 3rd player to join
     if (id === 3) {
+		// Send player id's to each player in the player array
+		for(let i = 0; i < players.length; i++){
+			io.to(players[i]).emit('id', players.indexOf(players[i]) + 1)
+		}
+
         // Send the start message to all players
         io.emit('start', true)
 
@@ -281,7 +244,7 @@ io.on('connection', function(socket) {
     }
 
     // When receiving a button message, push that button id to all players
-    socket.on('button', (msg) => {
+    socket.on('button', msg => {
         // If the last command is fulfilled...
         if(!checkCommands(msg)){
             // Add to the score total
@@ -297,6 +260,15 @@ io.on('connection', function(socket) {
             sendCommands()
         }
     })
+
+	socket.on('disconnect', () => {
+		// On disconnect, remove that player from the players array
+		let i = players.indexOf(socket.id)
+		players.splice(i, 1)
+
+		// Decrement the id variable
+		id--
+	})
 })
 
 http.listen(port, () => {

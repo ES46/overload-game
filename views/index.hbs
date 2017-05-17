@@ -4,18 +4,22 @@
 <head>
     <meta charset="utf-8">
     <meta name="google-signin-client_id" content="229545640899-jvj838koibku2414l5mjlo00ci0hb35s.apps.googleusercontent.com">
-    <title>Overload Game</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.css">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<title>Overload Game</title>
+    
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
-    <script src="https://use.fontawesome.com/6240c3ded0.js"></script>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="https://fonts.googleapis.com/css?family=Press+Start+2P" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Press+Start+2P" rel="stylesheet">
     <link rel="stylesheet" href="./main.css">
+
+	<script src="https://use.fontawesome.com/6240c3ded0.js"></script> 
 </head>
 
 <body>
-    <a class="" href="/"> <h1  class="game_title" align="center"><i class="fa fa-bomb" aria-hidden="true"></i> AGILE OVERLOAD <i class="fa fa-bomb" aria-hidden="true"></i></h1></a>
-    <div class="container">
+    <a href="/"><h1 class="game_title" align="center"><i class="fa fa-bomb" aria-hidden="true"></i> AGILE OVERLOAD <i class="fa fa-bomb" aria-hidden="true"></i></h1></a>
+    
+	<div class="container">
         <div class="row shell">
             <div class="shell-wrap col-lg-4">
                 <p class="shell-top-bar">/agile-overload/</p>
@@ -24,7 +28,7 @@
                 </div>
             </div>
         </div>
-
+	</div>
 
     <div class="form">
         <form class="" action="/signup" method="POST">
@@ -36,44 +40,28 @@
             </div>
         </form>
         <form class="sign-in-form " action="/login" method="post">
-          <div class="dope1">
-            <label for="signIn">Sign In</label>
-
-
-            <input type="email" name="playername" class="form-control" id="email1" placeholder="email" required>
-            <input type="password" name="password" class="form-control" id="password2" placeholder="password" required>
-
-          </div>
-          <button id="signin" type="submit"  class="btn btn-sm" align="center">Play Game</button>
+        	<div class="dope1">
+            	<label for="signIn">Sign In</label>
+				<input type="email" name="playername" class="form-control" id="email1" placeholder="email" required>
+            	<input type="password" name="password" class="form-control" id="password2" placeholder="password" required>
+			</div>
+        	<button id="signin" type="submit"  class="btn btn-sm" align="center">Play Game</button>
         </form>
-        <div class="pineapple1">
-          <img src="./pineapple.png" alt="pineapple">
+        
+		<div class="pineapple1">
+        	<img src="./pineapple.png" alt="pineapple">
         </div>
         
         <div class="pineapple2">
-          <img src="./pineapple.png" alt="pineapple">
+        	<img src="./pineapple.png" alt="pineapple">
         </div>
+		
+		<div data-id="{{playername}}" class="g-signin2" data-onsuccess="onSignIn"></div>
 
-            <div data-id="{{playername}}" class="g-signin2" data-onsuccess="onSignIn"></div>
-
-            {{#if login}}
-              <h1 class="error-messages">{{login}}</h1>
-            {{/if}}
-
-
-        <!--</form>
-        <div class="col-lg-3"></div>
-      </div>
-
-
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="https://apis.google.com/js/platform.js" async defer></script>
-    <script src="/app.js"></script>
-    <script>
-    $('document').ready(){
-      onSignIn(googleUser)
-    }
-    </script> -->
+        {{#if login}}
+        	<h1 class="error-messages">{{login}}</h1>
+        {{/if}}
+	</div>
 </body>
 
 </html>
