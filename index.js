@@ -192,9 +192,11 @@ function checkTimer(){
 		// Send the final score to all players
         io.emit('score', score)
 
+		// Reset game variables
         players = []
         commands = []
         score = 0
+		id = 0
 
         // Send the end message to all players
         io.emit('end', true)
