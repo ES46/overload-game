@@ -121,28 +121,25 @@ app.post('/login', (req, res, next) => {
 	})
 })
 
-// Start with 1 for the first playerId
-var id = 0
-
 // Start with 0 for the score
-var score = 0
+let score = 0
 
 // Initialize empty current commands array
-var commands = []
+let commands = []
 
 // Initialize array of player socked ids
-var players = []
+let players = []
 
 function sendCommands(){
-    for (var i = 0; i < 3; i++) {
+    for (let i = 0; i < 3; i++) {
         io.to(players[i]).emit('command', commands[i])
     }
 }
 
 function generateCommands(){
-    var randomSet, random
+    let randomSet, random
 
-    for (var i = 0; i < 3; i++) {
+    for (let i = 0; i < 3; i++) {
         // Select a random command from each player set
         randomSet = (Math.random() * 12) + (i * 12)
         random = Math.floor(randomSet)
@@ -157,10 +154,10 @@ function generateCommands(){
 
 function checkCommands(id){
     // If the pressed button is in the commands array
-    if(commands.includes(+id)){
+    if(commands.includes(id)){
         // Removed the correctly pressed command from the remaining commands
         commands = commands.filter(entry => {
-            return entry !== +id
+            return entry !== id
         })
     }
 
@@ -168,7 +165,7 @@ function checkCommands(id){
     return commands.length
 }
 
-var duration = 60,
+let duration = 60,
     timer = duration,
     minutes,
     seconds,
@@ -192,7 +189,7 @@ function checkTimer(){
 		// Send the final score to all players
         io.emit('score', score)
 
-		// Reset game variables
+		// Reset game letiables
         players = []
         commands = []
         score = 0
@@ -214,15 +211,12 @@ function mainLoop() {
 }
 
 // Perform this callback when a player connects to the '/game' route
-io.on('connection', (socket) => {
-    // Increment id variable on new player join
-	id++
-
+io.on('connection', socket => {
     // Add this players socket ID to the array of players
     players.push(socket.id)
 
     // Start the game if the this is the 3rd player to join
-    if (id === 3) {
+    if (players.length === 3) {
 		// Send player id's to each player in the player array
 		for(let i = 0; i < players.length; i++){
 			io.to(players[i]).emit('id', players.indexOf(players[i]) + 1)
@@ -263,9 +257,6 @@ io.on('connection', (socket) => {
 		// On disconnect, remove that player from the players array
 		let i = players.indexOf(socket.id)
 		players.splice(i, 1)
-
-		// Decrement the id variable
-		id--
 	})
 })
 

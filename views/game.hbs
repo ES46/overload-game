@@ -56,41 +56,38 @@
 
         $(function() {
             // Initialize event listener for the buttons
-            document.querySelector('.container').addEventListener('click', function(event) {
-                if (event.target.classList.contains('col-xs-6')) {
+			document.querySelector('.container').addEventListener('click', event => {
+                if(event.target.classList.contains('col-xs-6')){
                     // Send the button's id to the server's socket
                     socket.emit('button', event.target.id)
                 }
             })
 
             // Save the player's id when received from server's socket
-            socket.on('id', function(msg) {
-                console.log(msg)
+			socket.on('id', msg => {
                 playerId = msg
                 addButtons(playerId)
             })
 
             // Add received command to the terminal when receiving from server
-            socket.on('command', function(msg) {
-                console.log(msg)
+			socket.on('command', msg => { 
                 addCommand(msg)
             })
 
             // Update the timer and bar when receiving new time from server
-            socket.on('timer', function(msg) {
+			socket.on('timer', msg => {
                 time.text(msg[0] + ":" + msg[1])
                 moveBar()
             })
 
             // Update the displayed score
-            socket.on('score', function(msg) {
-                console.log(msg)
+			socket.on('score', msg => {
                 currentScore = msg
                 score.text(msg)
             })
 
             // Reset the timer bar when the game ends
-            socket.on('end', function(msg) {
+			socket.on('end', msg => {
                 width = 100
 
                 document.location.href='/gameover?score=' + currentScore
