@@ -196,7 +196,6 @@ function checkTimer(){
         players = []
         commands = []
         score = 0
-		id = 0
 
         // Send the end message to all players
         io.emit('end', true)
@@ -240,9 +239,6 @@ io.on('connection', (socket) => {
 
         // Start the main timer loop
         loop = setInterval(mainLoop, 1000)
-
-        // Reset the id counter
-        id = 0
     }
 
     // When receiving a button message, push that button id to all players
